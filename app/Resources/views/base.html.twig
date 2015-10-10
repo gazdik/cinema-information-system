@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon"/>
+
+    {% block stylesheets %}
+      {% stylesheets filter="scssphp" output="css/app.css"
+           "assets/scss/bootstrap-sprockets.scss"
+           "assets/scss/bootstrap.scss"
+           "assets/scss/font-awesome/font-awesome.scss"
+           "assets/scss/main.scss"
+           "assets/css/*.css"
+      %}
+         <link rel="stylesheet" href="{{ asset_url }}" />
+      {% endstylesheets %}
+    {% endblock %}
+  </head>
+  <body>
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+      {% javascripts filter="?jsqueeze" output="js/app.js"
+          "assets/js/jquery.js"
+          "assets/js/bootstrap.js"
+          "assets/js/main.js"
+      %}
+          <script src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+    {% endblock %}
+  </body>
 </html>
