@@ -26,7 +26,7 @@
     {% block header %}
     <div class="bg-header container">
       <a href="/">
-        <img alt="logo" src="{{ 'images/logo.png' }}"/>
+        <img alt="logo" src="{{ 'images/su_logo.png' }}"/>
       </a>
     </div>
     {% endblock %}
@@ -38,7 +38,7 @@
     <div class="container bg-content">
       <div class="row">
 
-        <div class="col-sm-3 col-lg-2 bg-nav">
+        <div class="col-md-3 col-lg-2 bg-nav">
           <!-- Sidebar -->
           {% block sidebar %}
           <ul class="nav">
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Body -->
-        <div class="col-sm-9 col-lg-10 bg-body">
+        <div class="col-md-9 col-lg-10 bg-body">
           {% block body %}{% endblock %}
         </div>
       </div>
