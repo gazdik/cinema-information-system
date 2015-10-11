@@ -1,0 +1,185 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\MovieRepository")
+ * @ORM\Table(name="movie")
+ */
+class Movie
+{
+  /**
+   * @ORM\Column(type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  protected $id;
+  /**
+   * @ORM\Column(type="string", length=100)
+   */
+  protected $name;
+  /**
+   * @ORM\Column(type="integer")
+   */
+  protected $year;
+  /**
+   * @ORM\Column(type="integer")
+   */
+  protected $length;
+  /**
+   * @ORM\Column(type="string", length=50)
+   */
+  protected $genre;
+
+  /**
+   * @ORM\OneToMany(targetEntity="Projection", mappedBy="movie")
+   */
+  protected $projections;
+
+  public function __construct()
+  {
+    $this->products = new ArrayCollection();
+  }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Movie
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set year
+     *
+     * @param integer $year
+     *
+     * @return Movie
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return integer
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * Set length
+     *
+     * @param integer $length
+     *
+     * @return Movie
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+
+        return $this;
+    }
+
+    /**
+     * Get length
+     *
+     * @return integer
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     *
+     * @return Movie
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Add projection
+     *
+     * @param \AppBundle\Entity\Projection $projection
+     *
+     * @return Movie
+     */
+    public function addProjection(\AppBundle\Entity\Projection $projection)
+    {
+        $this->projections[] = $projection;
+
+        return $this;
+    }
+
+    /**
+     * Remove projection
+     *
+     * @param \AppBundle\Entity\Projection $projection
+     */
+    public function removeProjection(\AppBundle\Entity\Projection $projection)
+    {
+        $this->projections->removeElement($projection);
+    }
+
+    /**
+     * Get projections
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjections()
+    {
+        return $this->projections;
+    }
+}
