@@ -1,0 +1,121 @@
+//==============================================================================
+//== Variables
+//==============================================================================
+$bg-font-color: white;
+$bg-header-height: 200px;
+$bg-firstletter-size: 110%;
+$bg-active-color: #eee;
+@import "bootstrap/variables";
+
+//==============================================================================
+//== Basic layout
+//==============================================================================
+
+// -----------------------------------------------------------------------------
+// Body
+// -----------------------------------------------------------------------------
+body {
+  // background-color: #b03232;
+  h1, h2, h3, h4, h5 {
+    font-family: $font-family-monospace;
+    text-transform: uppercase;
+    &::first-letter {
+      font-size: $bg-firstletter-size;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+}
+// -----------------------------------------------------------------------------
+// Header
+// -----------------------------------------------------------------------------
+.bg-header {
+
+  background-color: #B03232;
+  // border-bottom: 1px solid $gray-dark;
+  img {
+    display: block;
+    margin: 0 auto;
+    padding: 5px 0;
+    width: 250px;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Sidebar
+// -----------------------------------------------------------------------------
+.bg-nav li a {
+  &::first-letter {
+    font-size: $bg-firstletter-size;
+  }
+
+  &.active {
+    background-color: $bg-active-color;
+  }
+
+  font-family: $font-family-monospace;
+  font-size: 22px;
+  font-weight: bold;
+  color: $text-color;
+  text-transform: uppercase;
+
+  padding: 0;
+}
+// -----------------------------------------------------------------------------
+// Main content
+// -----------------------------------------------------------------------------
+.bg-content {
+  margin-top: 20px;
+}
+
+.bg-body {
+  border-left: 1px solid $gray-dark;
+  padding-left: 20px;
+  min-height: 600px;
+}
+
+.bg-footer {
+  border-top: 1px solid $gray-dark;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+//==============================================================================
+//== Sing in form
+//==============================================================================
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

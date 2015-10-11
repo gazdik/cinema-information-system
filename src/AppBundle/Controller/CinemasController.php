@@ -6,15 +6,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class CinemasController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/cinemas", name="cinemas")
      */
-    public function indexAction(Request $request)
+    public function cinemasAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('index.html.twig', array(
+        return $this->render('cinemas.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
