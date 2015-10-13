@@ -88,12 +88,12 @@ private $discount = array(
 
         // Set dates
         $date = new \DateTime();
-        $date->setTimestamp(randomTimestamp('2015/11/01', '2015/12/31'));
+        $date->setTimestamp(randomTimestamp('2015/10/01', '2015/11/30'));
         if (rand(0,1) == 1) {
           $ticket->setBookingDate($date);
         }
         $date = new \DateTime();
-        $date->setTimestamp(randomTimestamp('2015/11/01', '2015/12/31'));
+        $date->setTimestamp(randomTimestamp('2015/10/01', '2015/11/30'));
         if (rand(0,1) == 1 || !$ticket->getBookingDate()) {
           $ticket->setPaymentDate($date);
         }

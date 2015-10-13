@@ -1562,9 +1562,10 @@ private $discount = array(
         $date2 = new \DateTime();
 
         // Set attributes to projection
-        $timestamp = randomTimestamp('2015/11/01', '2015/12/31');
+        $timestamp = randomTimestamp('2015/10/01', '2015/11/30');
         $date->setTimestamp($timestamp);
-        $projection->setStart($date);;
+        $projection->setDate($date);
+        $projection->setStart($date);
         $date2->setTimestamp($timestamp + $movie->getLength()*60);
         $projection->setEnd($date2);
 
