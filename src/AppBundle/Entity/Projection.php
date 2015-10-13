@@ -23,16 +23,22 @@ class Projection
     private $id;
 
     /**
-     * @var datetime,
+     * @ORM\Column(name="date", type="date")
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
      *
-     * @ORM\Column(name="start", type="datetime")
+     * @ORM\Column(name="start", type="time")
      */
     private $start;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end", type="datetime", nullable=true)
+     * @ORM\Column(name="end", type="time", nullable=true)
      */
     private $end;
 
@@ -61,6 +67,13 @@ class Projection
         $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+    public function s_start()
+    {
+      return $this->start->format('G:i');
+    }
+
+
     /**
      * Get id
      *
@@ -69,6 +82,30 @@ class Projection
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Projection
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**

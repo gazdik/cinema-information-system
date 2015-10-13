@@ -10,4 +10,15 @@ namespace AppBundle\Entity;
  */
 class ProjectionRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function findByDateOrdered ($date)
+  {
+    $query = $this->getEntityManager()->createQuery(
+      'SELECT p
+      FROM AppBundle:Projection p
+      WHERE p.date = :date
+      ORDER BY p.start ASC'
+    )->setParameter('date', $date->format('Y-m-d'));
+
+    return $query->getResult();
+  }
 }
