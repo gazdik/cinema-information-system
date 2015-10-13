@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\MovieRepository")
@@ -21,15 +22,15 @@ class Movie
    */
   protected $name;
   /**
-   * @ORM\Column(type="integer")
+   * @ORM\Column(type="integer", nullable=true)
    */
   protected $year;
   /**
-   * @ORM\Column(type="integer")
+   * @ORM\Column(type="integer", nullable=true)
    */
   protected $length;
   /**
-   * @ORM\Column(type="string", length=50)
+   * @ORM\Column(type="string", length=50, nullable=true)
    */
   protected $genre;
 
@@ -38,10 +39,13 @@ class Movie
    */
   protected $projections;
 
-  public function __construct()
-  {
-    $this->products = new ArrayCollection();
-  }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projections = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id

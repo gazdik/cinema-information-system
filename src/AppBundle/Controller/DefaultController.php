@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use AppBundle\Entity\Hall;
+
 class DefaultController extends Controller
 {
     /**
@@ -13,9 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $hall = $this->getDoctrine()->getRepository('AppBundle:Hall')->find(1);
+
         return $this->render('index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'seats' => $hall->getSeats()->count(),
         ));
     }
 }

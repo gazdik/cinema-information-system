@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,7 @@ class Projection
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end", type="datetime")
+     * @ORM\Column(name="end", type="datetime", nullable=true)
      */
     private $end;
 
@@ -41,6 +42,24 @@ class Projection
      */
     protected $movie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Hall")
+     * @ORM\JoinColumn(name="hall_id", nullable=FALSE, referencedColumnName="id")
+     */
+    private $hall;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="projection")
+     */
+    private $tickets;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -122,5 +141,63 @@ class Projection
     public function getMovie()
     {
         return $this->movie;
+    }
+
+    /**
+     * Set hall
+     *
+     * @param \AppBundle\Entity\Hall $hall
+     *
+     * @return Projection
+     */
+    public function setHall(\AppBundle\Entity\Hall $hall)
+    {
+        $this->hall = $hall;
+
+        return $this;
+    }
+
+    /**
+     * Get hall
+     *
+     * @return \AppBundle\Entity\Hall
+     */
+    public function getHall()
+    {
+        return $this->hall;
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     *
+     * @return Projection
+     */
+    public function addTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     */
+    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }
