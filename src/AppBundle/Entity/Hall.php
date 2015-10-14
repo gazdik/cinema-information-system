@@ -23,6 +23,12 @@ class Hall
     private $id;
 
     /**
+     * @ORM\Column(name="number", type="integer")
+     * @var integer
+     */
+    private $number;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Cinema", inversedBy="halls")
      * @ORM\JoinColumn(name="cinema_name", referencedColumnName="name", nullable=false)
      */
@@ -32,6 +38,7 @@ class Hall
      * @ORM\OneToMany(targetEntity="Seat", mappedBy="hall")
      */
     private $seats;
+
 
     /**
      * Constructor
@@ -107,5 +114,29 @@ class Hall
     public function getSeats()
     {
         return $this->seats;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     *
+     * @return Hall
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 }
