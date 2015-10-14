@@ -46,7 +46,7 @@ class Projection
      * @ORM\ManyToOne(targetEntity="Movie", inversedBy="projections")
      * @ORM\JoinColumn(name="movie_id", nullable=FALSE, referencedColumnName="id")
      */
-    protected $movie;
+    private $movie;
 
     /**
      * @ORM\ManyToOne(targetEntity="Hall")
@@ -67,12 +67,35 @@ class Projection
         $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     public function s_start()
     {
       return $this->start->format('G:i');
     }
 
+    public function s_end()
+    {
+      return $this->start->format('G:i');
+    }
+    public function s_date()
+    {
+      return $this->date->format('j.n.Y');
+    }
+
+    public function getHallNumber()
+    {
+      return $this->hall->getNumber();
+    }
+
+    public function getCinemaName()
+    {
+      return $this->hall->getCinema()->getName();
+    }
+
+    public function getMovieName()
+    {
+      // return $this->movie->getName();
+      return $this->movie->getName();
+    }
 
     /**
      * Get id

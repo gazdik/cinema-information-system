@@ -69,6 +69,16 @@ class Ticket
     private $seat;
 
 
+    public function s_booking_date()
+    {
+      return $this->booking_date->format('G:i');
+    }
+
+    public function s_payment_date()
+    {
+      return $this->booking_date->format('G:i');
+    }
+
     /**
      * Get id
      *
