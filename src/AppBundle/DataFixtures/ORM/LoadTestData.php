@@ -1509,6 +1509,7 @@ private $discount = array(
 
           for ($i = 0; $i < rand(0, 3); ++$i) {
               $hall = new Hall();
+              $hall->setNumber($i);
               $hall->setCinema($cinema);
 
               for ($j = 0; $j < rand(100, 500); ++$j) {
