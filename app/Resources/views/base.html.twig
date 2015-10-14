@@ -5,7 +5,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Vitajte!{% endblock %}</title>
 
     <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon"/>
 
@@ -43,14 +43,18 @@
           {% block sidebar %}
           <ul class="nav">
             <li>
-              <a class="active" href="/programme">Program</a>
+              <a {% if app.request.get('_route') == 'programme' %} class="active"{% endif %}
+              href="{{ path('programme') }}">Program</a>
             </li>
             <li>
-              <a href="/cinemas">Kiná</a>
-            </li>
+              <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+              href="{{ path('cinemas') }}">Kiná</a>
+</li>
             <li>
-              <a href="/login">Prihlásenie</a>
+              <a {% if app.request.get('_route') == 'login' %} class="active"{% endif %}
+              href="{{ path('login') }}">Prihlásenie</a>
             </li>
+
           </ul>
           {% endblock %}
         </div>

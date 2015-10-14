@@ -1,106 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Program{% endblock %}
+
 {% block body %}
-<h2>23.12.2015</h2>
-<table class="table table-striped">
-  <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Zelena bunda</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-</table>
+<h1 class="page-header">Program</h1>
 
-<h2>24.12.2015</h2>
-<table class="table table-striped">
-  <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Máša a medveď</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-</table>
+{% for projections in proj_days %}
 
-<h2>25.12.2015</h2>
+<h2>{{ projections[0].s_date }}</h2>
 <table class="table table-striped">
+{% for projection in projections %}
   <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
+    <td>{{ projection.s_start }}</td>
+    <td>Kino
+      {{ projection.getCinemaName }}</td>
+    <td>{{ projection.getMovieName }}</td>
   </tr>
-  <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Máša a medveď</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
+{% endfor %}
 </table>
+{% endfor %}
 
 {% endblock %}
