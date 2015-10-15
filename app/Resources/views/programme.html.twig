@@ -4,60 +4,58 @@
 
 {# Add stylesheet for date picker #}
 {% block stylesheets %}
-  {{ parent() }}
-  {{ form_stylesheet(form) }}
+{{ parent() }}
+{{ form_stylesheet(form) }}
 {% endblock %}
 
 {# Add javascript for date picker #}
 {% block javascripts %}
-  {{ parent() }}
-  {{ form_javascript(form) }}
+{{ parent() }}
+{{ form_javascript(form) }}
 {% endblock %}
 
 {% block body %}
 <h1 class="page-header">Program</h1>
 
 {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-  {{ form_errors(form) }}
+{{ form_errors(form) }}
 
-  <div class="form-group">
-    <!-- <label class="sr-only" for="{{ form.movie.vars.id }}">Movie</label> -->
-    {{ form_label(form.movie, none, {'label_attr': {'class': 'sr-only'}}) }}
-    {{ form_widget(form.movie, {'attr': {'class': 'form-control', 'placeholder': 'Film'}}) }}
-  </div>
-  <div class="form-group">
-      {{ form_label(form.cinema, none, {'label_attr': {'class': 'sr-only'}}) }}
-      {{ form_widget(form.cinema, {'attr': {'class': 'form-control'}}) }}
-  </div>
-  <div class="form-group">
-    {{ form_label(form.genre , none, {'label_attr': {'class': 'sr-only'}}) }}
-    {{ form_widget(form.genre , {'attr': {'class': 'form-control'}}) }}
+<div class="form-group">
+  <!-- <label class="sr-only" for="{{ form.movie.vars.id }}">Movie</label> -->
+  {{ form_label(form.movie, none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.movie, {'attr': {'class': 'form-control', 'placeholder': 'Film'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.cinema, none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.cinema, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.genre , none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.genre , {'attr': {'class': 'form-control'}}) }}
 </div>
 
-  <div class="form-group">
-    {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
-    {{ form_errors(form.date) }}
-    {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Dátum'}}) }}
-  </div>
+<div class="form-group">
+  {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
+  {{ form_errors(form.date) }}
+  {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Dátum'}}) }}
+</div>
 
-
-  {{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
 
 {{ form_end(form) }}
-
 
 {% for projections in proj_days %}
 
 <h2>{{ projections[0].s_date }}</h2>
 <table class="table table-striped">
-{% for projection in projections %}
+  {% for projection in projections %}
   <tr>
     <td>{{ projection.s_start }}</td>
     <td>Kino
       {{ projection.getCinemaName }}</td>
     <td>{{ projection.getMovieName }}</td>
   </tr>
-{% endfor %}
+  {% endfor %}
 </table>
 {% endfor %}
 
