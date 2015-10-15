@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "leafo/scssphp": "^0.3.2",
         "patchwork/jsqueeze": "~1.0",
-        "doctrine/doctrine-fixtures-bundle": "^2.2"
+        "doctrine/doctrine-fixtures-bundle": "^2.2",
+				"stephanecollot/datetimepicker-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

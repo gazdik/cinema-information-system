@@ -31,6 +31,10 @@ framework:
     fragments:       ~
     http_method_override: true
 
+# DateTime Picker config
+sc_datetimepicker:
+    picker: ~
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
