@@ -1524,7 +1524,7 @@ private $discount = array(
           $cinema->setName($foo['name']);
           $cinema->setAddress($foo['address']);
 
-          for ($i = 0; $i < rand(0, 3); ++$i) {
+          for ($i = 0; $i < rand(1, 3); ++$i) {
               $hall = new Hall();
               $hall->setNumber($i);
               $hall->setCinema($cinema);
