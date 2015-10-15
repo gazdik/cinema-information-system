@@ -43,6 +43,7 @@
           {% block sidebar %}
           <ul class="nav">
             <li>
+              <!-- TODO: Deprecated function!!! -->
               <a {% if app.request.get('_route') == 'programme' %} class="active"{% endif %}
               href="{{ path('programme') }}">Program</a>
             </li>
