@@ -29,8 +29,10 @@ class Movie
    * @ORM\Column(type="integer", nullable=true)
    */
   protected $length;
+
   /**
-   * @ORM\Column(type="string", length=50, nullable=true)
+   * @ORM\ManyToOne(targetEntity="MovieGenre")
+   * @ORM\JoinColumn(name="genre", referencedColumnName="genre", nullable=false)
    */
   protected $genre;
 
@@ -132,11 +134,11 @@ class Movie
     /**
      * Set genre
      *
-     * @param string $genre
+     * @param \AppBundle\Entity\MovieGenre $genre
      *
      * @return Movie
      */
-    public function setGenre($genre)
+    public function setGenre(\AppBundle\Entity\MovieGenre $genre)
     {
         $this->genre = $genre;
 
@@ -146,7 +148,7 @@ class Movie
     /**
      * Get genre
      *
-     * @return string
+     * @return \AppBundle\Entity\MovieGenre
      */
     public function getGenre()
     {

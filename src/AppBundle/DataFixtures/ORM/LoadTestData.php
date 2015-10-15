@@ -17,6 +17,7 @@ use AppBundle\Entity\Movie;
 use AppBundle\Entity\Seat;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Projection;
+use AppBundle\Entity\MovieGenre;
 
 // TODO: randomTimestamp
 use AppBundle\DataFixtures\ORM\LoadTickets;
@@ -655,6 +656,20 @@ array('name' => 'Holly','address' => '9695 Sit Rd.'),
 array('name' => 'Amelia','address' => '824-3134 Habitant Rd.'),
 array('name' => 'Flavia','address' => 'Ap #243-1023 Nec, St.'),
 );
+
+private $genres = array(
+'Horror',
+'Comedy',
+'Crime',
+'Thriller',
+'Drama',
+'History',
+'Film-Noir',
+'Family',
+'Animation',
+'Romance',
+);
+
 
     private $movies = array(
     array('name' => 'dictum','year' => 1955,'genre' => 'Horror','length' => 187),
@@ -1485,6 +1500,8 @@ private $discount = array(
      */
     public function load(ObjectManager $manager)
     {
+      $em = $this->container->get('doctrine')->getEntityManager('default');
+
       /**
        * Add clients into database
        */
@@ -1527,13 +1544,30 @@ private $discount = array(
       $manager->flush();
 
       /**
+       * Add genres into database
+       */
+      foreach ($this->genres as $foo) {
+        $genre = new MovieGenre();
+        $genre->setGenre($foo);
+        $manager->persist($genre);
+      }
+      $manager->flush();
+
+      // Fetch genres from DB
+      $repository = $em->getRepository('AppBundle:MovieGenre');
+      $genres = $repository->findAll();
+
+      /**
        * Add movies into database
        */
       foreach ($this->movies as $foo) {
         $movie = new Movie();
         $movie->setName($foo['name']);
         $movie->setYear($foo['year']);
-        $movie->setGenre($foo['genre']);
+
+        $genre = $genres[array_rand($genres)];
+        $movie->setGenre($genre);
+
         $movie->setLength($foo['length']);
 
         $manager->persist($movie);
@@ -1544,8 +1578,6 @@ private $discount = array(
        * Add tickets and projections
        */
       // Fetch clients, seats and movies from database
-      $em = $this->container->get('doctrine')->getEntityManager('default');
-
       $repository = $em->getRepository('AppBundle:Client');
       $clients = $repository->findAll();
       $repository = $em->getRepository('AppBundle:Movie');
