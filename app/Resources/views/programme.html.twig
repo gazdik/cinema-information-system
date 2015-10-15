@@ -17,11 +17,12 @@
 {% block body %}
 <h1 class="page-header">Program</h1>
 
+{# Search bar #}
+<div class="bg-searchform">
 {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
 {{ form_errors(form) }}
 
 <div class="form-group">
-  <!-- <label class="sr-only" for="{{ form.movie.vars.id }}">Movie</label> -->
   {{ form_label(form.movie, none, {'label_attr': {'class': 'sr-only'}}) }}
   {{ form_widget(form.movie, {'attr': {'class': 'form-control', 'placeholder': 'Film'}}) }}
 </div>
@@ -35,28 +36,37 @@
 </div>
 
 <div class="form-group">
+    <!-- <label class="sr-only" for="{{ form.date.vars.id }}"></label> -->
+    <!-- <input type="text" class="form-control" id="{{ form.date.vars.id }}" placeholder="Dátum"> -->
   {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
   {{ form_errors(form.date) }}
   {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Dátum'}}) }}
+  <span class="add-on"><i class="icon-th"></i></span>
 </div>
 
 {{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
 
 {{ form_end(form) }}
+</div>
 
-{% for projections in proj_days %}
-
-<h2>{{ projections[0].s_date }}</h2>
+{# Table with projections #}
 <table class="table table-striped">
+  <tr>
+    <th>Čas</th>
+    <th>Dátum</th>
+    <th>Film</th>
+    <th>Žáner</th>
+    <th>Kino</th>
+  </tr>
   {% for projection in projections %}
   <tr>
     <td>{{ projection.s_start }}</td>
+    <td>{{ projection.s_date }}</td>
+    <td>{{ projection.getMovieName }}</td>
+    <td>{{ projection.getGenre }}</td>
     <td>Kino
       {{ projection.getCinemaName }}</td>
-    <td>{{ projection.getMovieName }}</td>
   </tr>
   {% endfor %}
 </table>
-{% endfor %}
-
 {% endblock %}

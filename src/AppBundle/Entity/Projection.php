@@ -97,6 +97,11 @@ class Projection
       return $this->movie->getName();
     }
 
+    public function getGenre()
+    {
+        return $this->movie->getGenre()->getGenre();
+    }
+
     /**
      * Get id
      *
