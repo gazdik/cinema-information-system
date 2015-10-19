@@ -1,106 +1,72 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Program{% endblock %}
+
+{# Add stylesheet for date picker #}
+{% block stylesheets %}
+{{ parent() }}
+{{ form_stylesheet(form) }}
+{% endblock %}
+
+{# Add javascript for date picker #}
+{% block javascripts %}
+{{ parent() }}
+{{ form_javascript(form) }}
+{% endblock %}
+
 {% block body %}
-<h2>23.12.2015</h2>
+<h1 class="page-header">Program</h1>
+
+{# Search bar #}
+<div class="bg-searchform">
+{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+{{ form_errors(form) }}
+
+<div class="form-group">
+  {{ form_label(form.movie, none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.movie, {'attr': {'class': 'form-control', 'placeholder': 'Film'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.cinema, none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.cinema, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.genre , none, {'label_attr': {'class': 'sr-only'}}) }}
+  {{ form_widget(form.genre , {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group">
+    <!-- <label class="sr-only" for="{{ form.date.vars.id }}"></label> -->
+    <!-- <input type="text" class="form-control" id="{{ form.date.vars.id }}" placeholder="Dátum"> -->
+  {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
+  {{ form_errors(form.date) }}
+  {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Dátum'}}) }}
+  <span class="add-on"><i class="icon-th"></i></span>
+</div>
+
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
+
+{{ form_end(form) }}
+</div>
+
+{# Table with projections #}
 <table class="table table-striped">
   <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
+    <th>Čas</th>
+    <th>Dátum</th>
+    <th>Film</th>
+    <th>Žáner</th>
+    <th>Kino</th>
   </tr>
+  {% for projection in projections %}
   <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
+    <td>{{ projection.s_start }}</td>
+    <td>{{ projection.s_date }}</td>
+    <td>{{ projection.getMovieName }}</td>
+    <td>{{ projection.getGenre }}</td>
+    <td>Kino
+      {{ projection.getCinemaName }}</td>
   </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Zelena bunda</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
+  {% endfor %}
 </table>
-
-<h2>24.12.2015</h2>
-<table class="table table-striped">
-  <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Máša a medveď</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-</table>
-
-<h2>25.12.2015</h2>
-<table class="table table-striped">
-  <tr>
-    <td>Kino Svet</td>
-    <td>Leviatan</td>
-    <td>20:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Hviezda</td>
-    <td>Mrazik</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-    <td>Kino Svet</td>
-    <td>Máša a medveď</td>
-    <td>18:30</td>
-    <td>100 Kc</td>
-  </tr>
-  <tr>
-  <td>Kino Hviezda</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-<tr>
-  <td>Kino Svet</td>
-  <td>Zelena bunda</td>
-  <td>18:30</td>
-  <td>100 Kc</td>
-</tr>
-</table>
-
 {% endblock %}

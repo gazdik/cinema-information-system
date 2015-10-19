@@ -13,9 +13,13 @@ class CinemasController extends Controller
      */
     public function cinemasAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager();
+
+        $cinemas = $em->getRepository('AppBundle:Cinema')->findAll();
+
         return $this->render('cinemas.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'cinemas' => $cinemas,
         ));
     }
 }
