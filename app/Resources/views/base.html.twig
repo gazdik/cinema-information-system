@@ -41,22 +41,7 @@
         <div class="col-md-3 col-lg-2 bg-nav">
           <!-- Sidebar -->
           {% block sidebar %}
-          <ul class="nav">
-            <li>
-              <!-- TODO: Deprecated function!!! -->
-              <a {% if app.request.get('_route') == 'programme' %} class="active"{% endif %}
-              href="{{ path('programme') }}">Program</a>
-            </li>
-            <li>
-              <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
-              href="{{ path('cinemas') }}">Kiná</a>
-</li>
-            <li>
-              <a {% if app.request.get('_route') == 'login' %} class="active"{% endif %}
-              href="{{ path('login') }}">Prihlásenie</a>
-            </li>
 
-          </ul>
           {% endblock %}
         </div>
 
