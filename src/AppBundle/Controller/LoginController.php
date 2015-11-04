@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class LoginController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login_override", name="login_override")
      */
     public function loginAction(Request $request)
     {

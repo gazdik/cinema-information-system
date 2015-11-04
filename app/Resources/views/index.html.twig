@@ -2,7 +2,12 @@
 
 {% block title %}Vitajte!{% endblock %}
 
+{% block sidebar %}
+  {{ parent() }}
+{% endblock %}
+
 {% block body %}
+
 {% if projections != null %}
 <h2>Dnes hráme</h2>
 <table class="table table-striped">

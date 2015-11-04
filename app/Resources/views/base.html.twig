@@ -41,13 +41,71 @@
         <div class="col-md-3 col-lg-2 bg-nav">
           <!-- Sidebar -->
           {% block sidebar %}
+          <ul class="nav">
+            <li>
+              <!-- TODO: Deprecated function!!! -->
+              <a {% if app.request.get('_route') == 'programme' %} class="active"{% endif %}
+              href="{{ path('programme') }}">Programme</a>
+            </li>
+            <li>
+              <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+              href="{{ path('cinemas') }}">Cinemas</a>
+            </li>
 
+            {# any user has been logged in, TODO: the route needs to be changed #}
+            {% if app.user != null and is_granted("ROLE_USER") %}
+              <li>
+                <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+                href="{{ path('cinemas') }}">My account</a>
+              </li>
+            {% endif %}
+
+            {# a cashier has been logged in, TODO: the route needs to be changed #}
+            {% if app.user != null and is_granted("ROLE_CASHIER") %}
+              <li>
+                <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+                href="{{ path('cinemas') }}">Tickets</a>
+              </li>
+            {% endif %}
+
+            {# a manager has been logged in, TODO: the route needs to be changed #}
+            {% if app.user != null and is_granted("ROLE_MANAGER") %}
+              <li>
+                <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+                href="{{ path('cinemas') }}">Receipts</a>
+              </li>
+            {% endif %}
+
+            {# an admin has been logged in, TODO: the route needs to be changed #}
+            {% if app.user != null and is_granted("ROLE_ADMIN") %}
+              <li>
+                <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
+                href="{{ path('cinemas') }}">System</a>
+              </li>
+            {% endif %}
+
+
+            {#logout / login #}
+            <li>
+              {% if app.user %}
+                <a {% if app.request.get('_route') == 'fos_user_security_logout' %} class="active"{% endif %}
+                href="{{ path('fos_user_security_logout') }}">Logout</a>
+              {% else %}
+                <a {% if app.request.get('_route') == 'fos_user_security_login' %} class="active"{% endif %}
+                href="{{ path('fos_user_security_login') }}">Login</a>
+              {% endif %}
+            </li>
+
+          </ul>
           {% endblock %}
         </div>
 
         <!-- Body -->
         <div class="col-md-9 col-lg-10 bg-body">
-          {% block body %}{% endblock %}
+          {% block body %}
+
+
+          {% endblock %}
         </div>
       </div>
     </div>
