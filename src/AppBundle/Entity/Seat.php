@@ -91,4 +91,5 @@ class Seat
     {
         return $this->hall;
     }
+
 }
