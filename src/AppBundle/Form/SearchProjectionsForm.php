@@ -24,15 +24,15 @@ class SearchProjectionsForm extends AbstractType
             'class' => 'AppBundle:Cinema',
             'empty_data' => null,
             'required' => false,
-            'placeholder' => 'Kino',
+            'placeholder' => 'Cinema',
             'choice_label' => 'name', ))
           ->add('genre', 'entity', array(
             'class' => 'AppBundle:MovieGenre',
             'empty_data' => null,
             'required' => false,
-            'placeholder' => 'Žáner',
+            'placeholder' => 'Genre',
             'choice_label' => 'genre', ))
-          ->add('save', 'submit', array('label' => 'Vyhľadaj'))
+          ->add('save', 'submit', array('label' => 'Search'))
         ;
     }
 
