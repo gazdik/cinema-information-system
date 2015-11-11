@@ -24,16 +24,9 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="decimal", precision=7, scale=2)
+     * @ORM\Column(name="ticketPrice", type="decimal", precision=7, scale=2)
      */
-    private $price;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="discount", type="string", length=20, nullable=true)
-     */
-    private $discount;
+    private $ticketPrice;
 
     /**
      * @var \DateTime
@@ -50,11 +43,10 @@ class Ticket
     private $payment_date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="tickets")
-     * @ORM\JoinColumn(name="client_email", referencedColumnName="email", nullable=true)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tickets")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $client;
-
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Projection", inversedBy="tickets")
@@ -67,6 +59,12 @@ class Ticket
      * @ORM\JoinColumn(name="seat_id", referencedColumnName="id", nullable=false)
      */
     private $seat;
+
+    /**
+    *@ORM\ManyToOne(targetEntity="PriceCategory")
+    *@ORM\JoinColumn(name="category_name", referencedColumnName="category", nullable=false)
+    */
+    private $priceCategory;
 
 
     public function s_booking_date()
@@ -186,30 +184,6 @@ class Ticket
     }
 
     /**
-     * Set client
-     *
-     * @param \AppBundle\Entity\Client $client
-     *
-     * @return Ticket
-     */
-    public function setClient(\AppBundle\Entity\Client $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \AppBundle\Entity\Client
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
      * Set projection
      *
      * @param \AppBundle\Entity\Projection $projection
@@ -255,5 +229,77 @@ class Ticket
     public function getSeat()
     {
         return $this->seat;
+    }
+
+    /**
+     * Set ticketPrice
+     *
+     * @param string $ticketPrice
+     *
+     * @return Ticket
+     */
+    public function setTicketPrice($ticketPrice)
+    {
+        $this->ticketPrice = $ticketPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketPrice
+     *
+     * @return string
+     */
+    public function getTicketPrice()
+    {
+        return $this->ticketPrice;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Ticket
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set priceCategory
+     *
+     * @param \AppBundle\Entity\PriceCategory $priceCategory
+     *
+     * @return Ticket
+     */
+    public function setPriceCategory(\AppBundle\Entity\PriceCategory $priceCategory)
+    {
+        $this->priceCategory = $priceCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get priceCategory
+     *
+     * @return \AppBundle\Entity\PriceCategory
+     */
+    public function getPriceCategory()
+    {
+        return $this->priceCategory;
     }
 }

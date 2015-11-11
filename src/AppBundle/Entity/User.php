@@ -19,6 +19,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="user")
+     */
+    private $tickets;
+
     public function __construct()
     {
         parent::__construct();
@@ -27,5 +32,41 @@ class User extends BaseUser
     //checks whether the user has the given role
     public function isGranted($role) {
       return in_array($role, $this->getRoles());
+    }
+
+
+
+    /**
+     * Add ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     *
+     * @return User
+     */
+    public function addTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     */
+    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }

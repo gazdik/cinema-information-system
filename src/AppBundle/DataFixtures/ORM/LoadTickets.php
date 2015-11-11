@@ -30,6 +30,9 @@ function randomTimestamp($start_date, $end_date)
 
 }
 
+//tag just turns off LoadTickets class
+?>
+
 class LoadTickets extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
 

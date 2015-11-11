@@ -18,6 +18,7 @@ use AppBundle\Entity\Seat;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Projection;
 use AppBundle\Entity\MovieGenre;
+use AppBundle\Entity\PriceCategory;
 
 // TODO: randomTimestamp
 use AppBundle\DataFixtures\ORM\LoadTickets;
@@ -1482,6 +1483,14 @@ private $discount = array(
   "employee"
 );
 
+private $priceCategories = array(
+  "adult" => 5,
+  "student" => 4,
+  "senior" => 3,
+  "baby" => 2,
+  "employee" => 1
+);
+
     /**
      * @var ContainerInterface
      */
@@ -1503,8 +1512,21 @@ private $discount = array(
       $em = $this->container->get('doctrine')->getEntityManager('default');
 
       /**
+      *Add price categories into database
+      */
+      foreach ($this->priceCategories as $category => $price) {
+        $priceCategory = new priceCategory();
+        $priceCategory->setCategory($category);
+        $priceCategory->setCategoryPrice($price);
+
+        $manager->persist($priceCategory);
+      }
+      $manager->flush();
+
+      /**
        * Add clients into database
        */
+/*
       foreach ($this->clients as $i) {
           $client = new Client();
           $client->setEmail($i['email']);
@@ -1515,7 +1537,7 @@ private $discount = array(
           $manager->persist($client);
       }
         $manager->flush();
-
+*/
       /**
        * Add cinemas, halls and seats into database
        */
@@ -1578,12 +1600,14 @@ private $discount = array(
        * Add tickets and projections
        */
       // Fetch clients, seats and movies from database
+
       $repository = $em->getRepository('AppBundle:Client');
       $clients = $repository->findAll();
       $repository = $em->getRepository('AppBundle:Movie');
       $movies = $repository->findAll();
       $repository = $em->getRepository('AppBundle:Hall');
       $halls = $repository->findAll();
+
 
       // Add projections into database
       for ($i = 0; $i < 1000; $i++) {
