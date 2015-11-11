@@ -1,9 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-horizontal'}}) }}
-<h2>Registration Form</h2>
 
-{{ form_errors(form) }}
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register  form-signin'}}) }}
+
+<h2 class="form-signin-heading">Registration Form</h2>
 
 <div class="form_group">
   {{ form_label(form.username) }}
@@ -33,5 +33,7 @@
 {{ form_rest(form) }}
 
 <button type="submit" class="btn btn-primary" name="_submit">Register</button>
+
+{{ form_errors(form) }}
 
 {{ form_end(form) }}
