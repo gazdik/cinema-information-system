@@ -1,38 +1,19 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% form_theme form ':Form:customFormLogin.html.twig' %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register  form-signin'}}) }}
 
 <h2 class="form-signin-heading">Registration Form</h2>
 
-<div class="form_group">
-  {{ form_label(form.username) }}
-  {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-  {{ form_errors(form.username) }}
-</div>
-
-<div class="form_group">
-  {{ form_label(form.email) }}
-  {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-  {{ form_errors(form.email) }}
-</div>
-
-<div class="form_group">
-  {{ form_label(form.plainPassword.first) }}
-  {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-  {{ form_errors(form.plainPassword.first) }}
-
-</div>
-
-<div class="form_group">
-  {{ form_label(form.plainPassword.second) }}
-  {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-  {{ form_errors(form.plainPassword.second) }}
-</div>
+{{ form_row(form.username, { 'label': 'Username' }) }}
+{{ form_row(form.email, {'label':'Email'})}}
+{{ form_row(form.plainPassword.first, { 'label': 'Password' }) }}
+{{ form_row(form.plainPassword.second, { 'label': 'Password confirmation' }) }}
 
 {{ form_rest(form) }}
 
-<button type="submit" class="btn btn-primary" name="_submit">Register</button>
+<button type="submit" class="btn btn-primary btn-lg btn-block" name="_submit">Register</button>
 
 {{ form_errors(form) }}
 
