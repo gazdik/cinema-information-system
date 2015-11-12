@@ -1,16 +1,16 @@
 {% extends 'main.html.twig' %}
 
-{% block title %}Kiná{% endblock %}
+{% block title %}Cinemas{% endblock %}
 
 {% block content %}
-<h1>Kiná</h1>
+<h1 class="page-header">Cinemas</h1>
 
 {% for cinema in cinemas %}
-<h2>Kino {{ cinema.name }}</h2>
-<h3>Adresa</h3>
+<h2>{{ cinema.name }} Cinema</h2>
+<h3>Address</h3>
 
 <address>
-<strong>Kino {{ cinema.name }}</strong><br>
+<strong>{{ cinema.name }} Cinema</strong><br>
 {{ cinema.address }}
 </address>
 
