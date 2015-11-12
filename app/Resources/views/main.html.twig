@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+  <div class="bg-header container">
+    <a href="/">
+      <img alt="logo" src="{{ 'images/su_logo.png' }}"/>
+    </a>
+  </div>
+{% endblock %}
+
+
+{% block body %}
+  <!-- Content -->
+  <div class="container bg-content">
+    <div class="row">
+
+      <div class="col-md-3 col-lg-2 bg-nav">
+        {% block navbar %}
+          {% include 'navbar.html.twig' %}
+        {% endblock %}
+      </div>
+
+      <!-- Body -->
+      <div class="col-md-9 col-lg-10 bg-body">
+        {% block content %}
+
+
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+<div class="bg-footer container">
+  <div class="copyright">&copy; 2015 Bielik & Gazdík</div>
+</div>
+{% endblock %}

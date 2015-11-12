@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'main.html.twig' %}
 
 {% block title %}Vitajte!{% endblock %}
 
@@ -6,7 +6,7 @@
   {{ parent() }}
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
 {% if projections != null %}
 <h2>Dnes hráme</h2>

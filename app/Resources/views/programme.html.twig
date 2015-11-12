@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'main.html.twig' %}
 
 {% block title %}Program{% endblock %}
 
@@ -14,7 +14,7 @@
 {{ form_javascript(form) }}
 {% endblock %}
 
-{% block body %}
+{% block content %}
 <h1 class="page-header">Program</h1>
 
 {# Search bar #}
@@ -40,7 +40,7 @@
     <!-- <input type="text" class="form-control" id="{{ form.date.vars.id }}" placeholder="Dátum"> -->
   {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
   {{ form_errors(form.date) }}
-  {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Dátum'}}) }}
+  {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }}
   <span class="add-on"><i class="icon-th"></i></span>
 </div>
 
@@ -52,11 +52,11 @@
 {# Table with projections #}
 <table class="table table-striped">
   <tr>
-    <th>Čas</th>
-    <th>Dátum</th>
-    <th>Film</th>
-    <th>Žáner</th>
-    <th>Kino</th>
+    <th>Time</th>
+    <th>Date</th>
+    <th>Movie</th>
+    <th>Genre</th>
+    <th>Cinema</th>
   </tr>
   {% for projection in projections %}
   <tr>
