@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block body %}
+<h1 class="page-header">Booking</h1>
+Movie {{ projection.getMovieName }}<br>
+Cinema {{ projection.getCinemaName }}<br>
+Date {{ projection.s_date }}<br>
+Time {{ projection.s_start }}<br>
+Hall {{ projection.hallNumber }}<br>
+
+<div class="bg-searchform">
+  {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+  {{ form_errors(form) }}
+
+  <div class="form-group">
+    {{ form_label(form.seat, none, {'label_attr': {'class': 'sr-only'}}) }}
+    {{ form_widget(form.seat, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div class="form-group">
+    {{ form_label(form.priceCategory , none, {'label_attr': {'class': 'sr-only'}}) }}
+    {{ form_widget(form.priceCategory , {'attr': {'class': 'form-control'}}) }}
+  </div>
+
+  {{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
+  {{ form_end(form) }}
+</div>
+
+{% endblock %}
