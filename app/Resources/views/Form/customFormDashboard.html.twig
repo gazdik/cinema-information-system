@@ -1,0 +1,33 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_row %}
+<div class="row">
+  <div class="form-group col-sm-6">
+    {{ form_label(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block button_widget %}
+    {% if label is empty %}
+        {% if label_format is not empty %}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {% else %}
+            {% set label = name|humanize %}
+        {% endif %}
+    {% endif %}
+    <button class="btn btn-default" type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+{% endblock button_widget %}
+
+{% block form_label %}
+    {{ parent() }}
+
+    {% if required %}
+        <span class="required">*</span>
+    {% endif %}
+{% endblock %}

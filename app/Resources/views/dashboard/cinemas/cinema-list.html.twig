@@ -1,0 +1,41 @@
+{% extends 'dashboard/main.html.twig' %}
+
+{% form_theme form ':Form:customFormDashboard.html.twig' %}
+
+
+{% block content %}
+<h1 class="page-header">Cinemas</h1>
+
+{# Add cinema form #}
+<div class="add-content">
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.name) }}
+{{ form_row(form.address) }}
+
+{{ form_widget(form.save) }}
+
+{{ form_end(form) }}
+</div>
+
+<hr>
+
+{% for cinema in cinemas %}
+<h2>{{ cinema.name }}
+  Cinema</h2>
+<h3>Address</h3>
+
+<address>
+  <strong>{{ cinema.name }}
+    Cinema</strong><br>
+  {{ cinema.address }}
+</address>
+
+<a href="{{ path('cinema-edit', {'cinema_name': cinema.name })}}" class="btn btn-default">Edit</a>
+<a href="{{ path('cinema-delete', {'cinema_name': cinema.name })}}" class="btn btn-default">Delete</a>
+
+<hr>
+{% endfor %}
+
+{% endblock %}

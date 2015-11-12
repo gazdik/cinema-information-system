@@ -1,0 +1,16 @@
+{% extends 'dashboard/main.html.twig' %}
+
+{% form_theme form ':Form:customFormDashboard.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">{{ cinema.name }} Cinema</h1>
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.address) }}
+
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
+
+{{ form_end(form) }}
+{% endblock %}
