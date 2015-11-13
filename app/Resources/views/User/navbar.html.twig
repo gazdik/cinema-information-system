@@ -39,8 +39,8 @@
   {# an admin has been logged in, TODO: the route needs to be changed #}
   {% if app.user != null and is_granted("ROLE_ADMIN") %}
     <li>
-      <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
-      href="{{ path('cinemas') }}">System</a>
+      <a {% if app.request.get('_route') == 'cinema-list' %} class="active"{% endif %}
+      href="{{ path('cinema-list') }}">System</a>
     </li>
   {% endif %}
 
@@ -55,9 +55,4 @@
       href="{{ path('fos_user_security_login') }}">Login</a>
     {% endif %}
   </li>
-
-  <li>
-    <a href="{{ path('cinema-list')}}">Admin page</a>
-  </li>
-
 </ul>
