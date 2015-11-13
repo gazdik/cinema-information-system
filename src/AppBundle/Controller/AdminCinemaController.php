@@ -10,9 +10,8 @@ use AppBundle\Entity\Hall;
 use AppBundle\Form\CinemaEditForm;
 use AppBundle\Form\CinemaAddForm;
 use AppBundle\Form\HallAddForm;
-use AppBundle\Form\HallEditForm;
 
-class DashboardController extends Controller
+class AdminCinemaController extends Controller
 {
     /**
      * @Route("/dashboard/cinemas", name="cinema-list")
@@ -40,7 +39,7 @@ class DashboardController extends Controller
 
         $cinemas = $em->getRepository('AppBundle:Cinema')->findAll();
 
-        return $this->render('dashboard/cinemas/cinema-list.html.twig', array(
+        return $this->render('Admin/Cinema/cinema-list.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'active' => 'cinemas',
             'cinemas' => $cinemas,
@@ -87,8 +86,6 @@ class DashboardController extends Controller
                 $em->persist($cinema);
                 $em->flush();
             }
-
-            // return  $this->redirectToRoute('cinema-edit', array('cinema_name' => $cinema_name));
         }
 
         // 'Add hall' form
@@ -97,7 +94,6 @@ class DashboardController extends Controller
         $formHallAdd->handleRequest($request);
 
         if ($formHallAdd->isValid()) {
-            // $cinema->addHall($newHall);
             $newHall->setCinema($cinema);
             $em->persist($newHall);
             $em->persist($cinema);
@@ -107,59 +103,12 @@ class DashboardController extends Controller
                 'cinema_name' => $cinema_name, ));
         }
 
-        return $this->render('dashboard/cinemas/cinema-edit.html.twig', array(
+        return $this->render('Admin/Cinema/cinema-edit.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'formCinema' => $formCinema->createView(),
             'formHallAdd' => $formHallAdd->createView(),
             'active' => 'cinemas',
             'cinema' => $cinema,
-            'errorMsg' => $errorMsg,
-        ));
-    }
-
-    /**
-     * @Route("/dashbaord/halls/edit/{id}", name="hall-edit")
-     */
-    public function hallEditAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $hall = $em->getRepository('AppBundle:Hall')->find($id);
-
-        // The hall isn't in db
-        if (!$hall) {
-            throw $this->createNotFoundException('Hall with id '
-            .$id.' does not exist.');
-        }
-
-        $errorMsg = '';
-
-        $form = $this->createForm(new HallEditForm(), $hall);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            if ($form->get('delete')->isClicked()) {
-                try {
-                    $em->remove($hall);
-                    $em->flush();
-
-                    return $this->redirectToRoute('cinema-edit', array(
-                        'cinema_name' => $hall->getCinema()->getName(),
-                    ));
-                } catch (\Exception $e) {
-                    $errorMsg = 'Cannot delete the hall due to integrity constraint violation.';
-                }
-            }
-
-            if ($form->get('save')->isClicked()) {
-                $em->persist($hall);
-                $em->flush();
-            }
-        }
-
-        return $this->render('dashboard/halls/hall-edit.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-            'active' => 'cinemas',
-            'form' => $form->createView(),
             'errorMsg' => $errorMsg,
         ));
     }

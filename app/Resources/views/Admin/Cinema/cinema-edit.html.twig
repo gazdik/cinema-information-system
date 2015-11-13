@@ -1,7 +1,7 @@
-{% extends 'dashboard/main.html.twig' %}
+{% extends ':Admin:main.html.twig' %}
 
-{% form_theme formCinema ':Form:customFormDashboard.html.twig' %}
-{% form_theme formHallAdd ':Form:addFormDashboard.html.twig' %}
+{% form_theme formCinema ':Form:dashboard.html.twig' %}
+{% form_theme formHallAdd ':Form:add.html.twig' %}
 
 {% block content %}
 <h1 class="page-header">{{ cinema.name }} Cinema</h1>

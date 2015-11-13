@@ -1,4 +1,4 @@
-{% extends ':Form:commonForm.html.twig' %}
+{% extends ':Form:common.html.twig' %}
 
 {% block form_row %}
 <div class="row">
@@ -21,10 +21,7 @@
             {% set label = name|humanize %}
         {% endif %}
     {% endif %}
-    <button class="btn btn-default" type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    {{ label|trans({}, translation_domain) }}
-    </button>
+    <button class="btn btn-default" type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
 {% endblock button_widget %}
 
 {% block form_label %}

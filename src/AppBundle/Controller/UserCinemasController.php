@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class CinemasController extends Controller
+class UserCinemasController extends Controller
 {
     /**
      * @Route("/cinemas", name="cinemas")
@@ -17,7 +17,7 @@ class CinemasController extends Controller
 
         $cinemas = $em->getRepository('AppBundle:Cinema')->findAll();
 
-        return $this->render('cinemas.html.twig', array(
+        return $this->render('User/cinemas.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'cinemas' => $cinemas,
         ));
