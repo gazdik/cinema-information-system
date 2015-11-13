@@ -56,7 +56,7 @@ class Ticket
 
     /**
      * @ORM\ManyToOne(targetEntity="Seat")
-     * @ORM\JoinColumn(name="seat_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="seat_id", referencedColumnName="id", nullable=true)
      */
     private $seat;
 

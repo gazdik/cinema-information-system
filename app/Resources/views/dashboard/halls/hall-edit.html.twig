@@ -1,0 +1,25 @@
+{% extends 'dashboard/main.html.twig' %}
+
+{% form_theme form ':Form:customFormDashboard.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">Hall edit</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.number) }}
+{{ form_row(form.capacity) }}
+
+{{ form_widget(form.save) }}
+{{ form_widget(form.delete)}}
+
+{{ form_end(form) }}
+
+{% endblock %}

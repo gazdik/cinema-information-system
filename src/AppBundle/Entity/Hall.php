@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Seat;
 
 /**
  * Hall
@@ -35,7 +36,7 @@ class Hall
     private $cinema;
 
     /**
-     * @ORM\OneToMany(targetEntity="Seat", mappedBy="hall")
+     * @ORM\OneToMany(targetEntity="Seat", mappedBy="hall", cascade={"persist", "remove"})
      */
     private $seats;
 
@@ -46,6 +47,33 @@ class Hall
     public function __construct()
     {
         $this->seats = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Return capacity
+     *
+     * @return integer
+     */
+    public function getCapacity()
+    {
+        return $this->seats->count();
+    }
+
+    /**
+     * Set capacity
+     * @param integer $capacity
+     */
+    public function setCapacity($capacity)
+    {
+        $this->seats->clear();
+
+        for ($i = 1; $i <= $capacity; $i++) {
+            $seat = new Seat();
+            $seat->setHall($this);
+            $seat->setNumber($i);
+
+            $this->seats->add($seat);
+        }
     }
 
     /**

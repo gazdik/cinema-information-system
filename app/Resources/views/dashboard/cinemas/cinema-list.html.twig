@@ -1,6 +1,6 @@
 {% extends 'dashboard/main.html.twig' %}
 
-{% form_theme form ':Form:customFormDashboard.html.twig' %}
+{% form_theme form ':Form:addFormDashboard.html.twig' %}
 
 
 {% block content %}
@@ -8,6 +8,12 @@
 
 {# Add cinema form #}
 <div class="add-content">
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
 {{ form_start(form) }}
 {{ form_errors(form) }}
 
@@ -33,7 +39,6 @@
 </address>
 
 <a href="{{ path('cinema-edit', {'cinema_name': cinema.name })}}" class="btn btn-default">Edit</a>
-<a href="{{ path('cinema-delete', {'cinema_name': cinema.name })}}" class="btn btn-default">Delete</a>
 
 <hr>
 {% endfor %}

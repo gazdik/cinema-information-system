@@ -24,12 +24,12 @@ class Cinema
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Hall", mappedBy="cinema")
+     * @ORM\OneToMany(targetEntity="Hall", mappedBy="cinema", cascade={"persist", "remove"})
      */
     private $halls;
 
@@ -41,6 +41,7 @@ class Cinema
     {
         $this->halls = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Set name
@@ -73,7 +74,7 @@ class Cinema
      *
      * @return Cinema
      */
-    public function setAddress($address)
+    public function setAddress($address = '')
     {
         $this->address = $address;
 

@@ -6,28 +6,30 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CinemaEditForm extends AbstractType
+class HallAddForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('address', 'text', array(
-            'required' => false,
+            ->add('number', 'text', array(
+                'required' => true,
             ))
-          ->add('save', 'submit')
-          ->add('delete', 'submit')
+            ->add('capacity', 'integer', array(
+                'required' => true,
+            ))
+            ->add('add', 'submit')
         ;
     }
 
     public function getName()
     {
-        return 'cinemaedit';
+        return 'halladd';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Cinema',
+            'data_class' => 'AppBundle\Entity\Hall',
         ));
     }
 }
