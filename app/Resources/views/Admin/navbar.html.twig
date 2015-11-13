@@ -6,7 +6,13 @@
     <a href="#">Screenings</a>
   </li>
   <li {% if active == 'movies' %} class="active"{% endif %}>
-    <a href="#">Movies</a>
+    <a href="{{ path('movie-list') }}">Movies</a>
+  </li>
+  <li {% if active == 'genres' %} class="active"{% endif %}>
+    <a href="#">Genres</a>
+  </li>
+  <li {% if active == 'price-list' %} class="active"{% endif %}>
+    <a href="#">Price List</a>
   </li>
   <li {% if active == 'reservations' %} class="active"{% endif %}>
     <a href="#">Reservations</a>

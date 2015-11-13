@@ -32,7 +32,7 @@ class Movie
 
   /**
    * @ORM\ManyToOne(targetEntity="MovieGenre")
-   * @ORM\JoinColumn(name="genre", referencedColumnName="genre", nullable=false)
+   * @ORM\JoinColumn(name="genre", referencedColumnName="genre", nullable=true)
    */
   protected $genre;
 
@@ -48,6 +48,8 @@ class Movie
     {
         $this->projections = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -138,7 +140,7 @@ class Movie
      *
      * @return Movie
      */
-    public function setGenre(\AppBundle\Entity\MovieGenre $genre)
+    public function setGenre(\AppBundle\Entity\MovieGenre $genre = null)
     {
         $this->genre = $genre;
 
