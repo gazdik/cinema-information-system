@@ -95,7 +95,7 @@ body {
 //== Sing in form
 //==============================================================================
 .form-signin {
-  max-width: 330px;
+  max-width: 350px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -113,21 +113,13 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
-  font-size: 16px;
+  margin-bottom: 10px;
+  // font-size: 16px;
 }
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+
 
 .link-signup {
   text-align: center;
@@ -251,4 +243,17 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+// -----------------------------------------------------------------------------
+// Add content frame
+// -----------------------------------------------------------------------------
+
+.add-content {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    border-left-color: #cb4a4a;
 }
