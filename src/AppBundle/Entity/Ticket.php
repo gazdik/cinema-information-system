@@ -74,7 +74,7 @@ class Ticket
 
     public function s_payment_date()
     {
-      return $this->booking_date->format('G:i');
+      return $this->payment_date->format('G:i');
     }
 
     /**
@@ -85,54 +85,6 @@ class Ticket
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set price
-     *
-     * @param string $price
-     *
-     * @return Ticket
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set discount
-     *
-     * @param string $discount
-     *
-     * @return Ticket
-     */
-    public function setDiscount($discount)
-    {
-        $this->discount = $discount;
-
-        return $this;
-    }
-
-    /**
-     * Get discount
-     *
-     * @return string
-     */
-    public function getDiscount()
-    {
-        return $this->discount;
     }
 
     /**

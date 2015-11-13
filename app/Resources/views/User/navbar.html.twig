@@ -14,6 +14,10 @@
       <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
       href="{{ path('cinemas') }}">My account</a>
     </li>
+    <li>
+      <a {% if app.request.get('_route') == 'reservations' %} class="active"{% endif %}
+      href="{{ path('reservations') }}">Reservations</a>
+    </li>
   {% endif %}
 
   {# a cashier has been logged in, TODO: the route needs to be changed #}
