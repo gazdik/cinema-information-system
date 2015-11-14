@@ -41,7 +41,7 @@ class AdminHallController extends Controller
                     return $this->redirectToRoute('cinema-edit', array(
                         'cinema_name' => $hall->getCinema()->getName(),
                     ));
-                } catch (\Exception $e) {
+                } catch (\Doctrine\DBAL\DBALException $e) {
                     $errorMsg = 'Cannot delete the hall due to integrity constraint violation.';
                 }
             }
