@@ -1,5 +1,8 @@
 {% extends ':User:main.html.twig' %}
 
+{% form_theme form ':Form:search.html.twig' %}
+
+
 {% block title %}Programme{% endblock %}
 
 {# Add stylesheet for date picker #}
@@ -19,32 +22,16 @@
 
 {# Search bar #}
 <div class="bg-searchform">
-{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+
+{{ form_start(form) }}
 {{ form_errors(form) }}
 
-<div class="form-group">
-  {{ form_label(form.movie, none, {'label_attr': {'class': 'sr-only'}}) }}
-  {{ form_widget(form.movie, {'attr': {'class': 'form-control', 'placeholder': 'Film'}}) }}
-</div>
-<div class="form-group">
-  {{ form_label(form.cinema, none, {'label_attr': {'class': 'sr-only'}}) }}
-  {{ form_widget(form.cinema, {'attr': {'class': 'form-control'}}) }}
-</div>
-<div class="form-group">
-  {{ form_label(form.genre , none, {'label_attr': {'class': 'sr-only'}}) }}
-  {{ form_widget(form.genre , {'attr': {'class': 'form-control'}}) }}
-</div>
+{{ form_row(form.movie) }}
+{{ form_row(form.cinema) }}
+{{ form_row(form.genre) }}
+{{ form_row(form.date) }}
 
-<div class="form-group">
-    <!-- <label class="sr-only" for="{{ form.date.vars.id }}"></label> -->
-    <!-- <input type="text" class="form-control" id="{{ form.date.vars.id }}" placeholder="Dátum"> -->
-  {{ form_label(form.date, none, {'label_attr': {'class':'sr-only'}}) }}
-  {{ form_errors(form.date) }}
-  {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }}
-  <span class="add-on"><i class="icon-th"></i></span>
-</div>
-
-{{ form_widget(form.save, {'attr': {'class': 'btn btn-default'}}) }}
+{{ form_widget(form.save) }}
 
 {{ form_end(form) }}
 </div>
