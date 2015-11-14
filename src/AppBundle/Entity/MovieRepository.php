@@ -26,4 +26,41 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * Find by movie name, cinema, date of projection and movie genre.
+     */
+    public function awesomeFind($name, $year, $length, $genre)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('m')
+          ->from('AppBundle:Movie', 'm');
+
+        if ($name) {
+            $qb->andWhere('m.name = ?1')
+                ->setParameter(1, $name);
+        }
+
+        if ($length) {
+            $qb->andWhere('m.length = ?4')
+                ->setParameter(4, $length);
+        }
+        if ($year) {
+            $qb->andWhere('m.year = ?2')
+                ->setParameter(2, $year);
+        }
+
+        if ($genre) {
+            $qb->join('m.genre', 'g')
+                ->andWhere('g.genre = ?3')
+                ->setParameter(3, $genre);
+        }
+
+        $qb->orderBy('m.name', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 }

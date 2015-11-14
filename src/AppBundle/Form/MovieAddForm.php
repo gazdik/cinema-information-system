@@ -20,9 +20,6 @@ class MovieAddForm extends AbstractType
             ->add('length', 'integer', array(
                 'required' => false,
             ))
-            ->add('year', 'integer', array(
-                'required' => false,
-            ))
             ->add('genre', 'entity', array(
                 'class' => 'AppBundle:MovieGenre',
                 'empty_data' => null,

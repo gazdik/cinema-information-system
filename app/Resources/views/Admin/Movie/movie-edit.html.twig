@@ -1,0 +1,27 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme form ':Form:dashboard.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">Movie edit</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.name) }}
+{{ form_row(form.year) }}
+{{ form_row(form.length, {'label' : 'Duration'}) }}
+{{ form_row(form.genre) }}
+
+{{ form_widget(form.save) }}
+{{ form_widget(form.delete)}}
+
+{{ form_end(form) }}
+
+{% endblock %}

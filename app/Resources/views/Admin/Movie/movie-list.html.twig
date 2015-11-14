@@ -1,6 +1,8 @@
 {% extends ':Admin:main.html.twig' %}
 
 {% form_theme formAdd ':Form:add.html.twig' %}
+{% form_theme formSearch ':Form:search.html.twig' %}
+
 
 {% block content %}
 <h1 class="page-header">Movies</h1>
@@ -29,6 +31,21 @@
 </div>
 
 <hr>
+
+{# Search bar #}
+<div class="bg-searchform">
+{{ form_start(formSearch) }}
+{{ form_errors(formSearch) }}
+
+{{ form_row(formSearch.name) }}
+{{ form_row(formSearch.year) }}
+{{ form_row(formSearch.length, {'label': 'Duration'}) }}
+{{ form_row(formSearch.genre) }}
+
+{{ form_widget(formSearch.search) }}
+
+{{ form_end(formSearch) }}
+</div>
 
 <table class="table table-striped">
   <tr>
