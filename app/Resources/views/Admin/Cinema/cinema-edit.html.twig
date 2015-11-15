@@ -30,7 +30,7 @@
 {{ form_start(formHallAdd) }}
 {{ form_errors(formHallAdd) }}
 
-{{ form_row(formHallAdd.number) }}
+{{ form_row(formHallAdd.name) }}
 {{ form_row(formHallAdd.capacity) }}
 {{ form_row(formHallAdd.capacity) }}
 
@@ -47,7 +47,7 @@
   </tr>
   {% for hall in cinema.halls %}
   <tr>
-    <td>{{ hall.getNumber }}</td>
+    <td>{{ hall.getName }}</td>
     <td>{{ hall.getCapacity }}</td>
     <td><a href="{{ path('hall-edit', {'id' : hall.id }) }}"
       class="btn btn-default">Edit</a>

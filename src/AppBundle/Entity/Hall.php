@@ -49,6 +49,33 @@ class Hall
     }
 
     /**
+     * Return capacity
+     *
+     * @return integer
+     */
+    public function getCapacity()
+    {
+        return $this->seats->count();
+    }
+
+    /**
+     * Set capacity
+     * @param integer $capacity
+     */
+    public function setCapacity($capacity)
+    {
+        $this->seats->clear();
+
+        for ($i = 1; $i <= $capacity; $i++) {
+            $seat = new Seat();
+            $seat->setHall($this);
+            $seat->setName($i);
+
+            $this->seats->add($seat);
+        }
+    }
+
+    /**
      * Constructor
      */
     public function __construct()

@@ -1,6 +1,8 @@
-{% extends ':User:main.html.twig' %}
+{% extends ':Admin:main.html.twig' %}
 
 {% block title %}Reservations{% endblock %}
+
+{% form_theme getUserForm ':Form:find.html.twig' %}
 
 {% block sidebar %}
   {{ parent() }}
@@ -13,6 +15,16 @@
     </div>
   {% endif %}
 
+  {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+  {% endif %}
+
+  <div class="add-content">
+
   {{ form_start(getUserForm) }}
   {{ form_widget(getUserForm) }}
   {{ form_end(getUserForm) }}
@@ -24,10 +36,10 @@
               {% endfor %}
           </div>
   {% endif %}
+  </div>
+
 
   {% if user != null %}
-    <h1 class="page-header">{{ user.getUsername }}</h1>
-
     {# Table with tickets #}
     <table class="table table-striped">
       <tr>
@@ -52,13 +64,15 @@
         <td>{{ ticket.getTicketPrice }}</td>
         <td>
           <a href="{{ path('cashier-reservations', {'action':'cancel',
-            'user_id': user.getId, 'ticket_id': user.getId}) }}">
+            'user_id': user.getId, 'ticket_id': ticket.getId}) }}"
+            class="btn btn-default">
             Cancel
           </a>
         </td>
         <td>
           <a href="{{ path('cashier-reservations', {'action':'sell',
-            'user_id': user.getId, 'ticket_id': user.getId}) }}">
+            'user_id': user.getId, 'ticket_id': ticket.getId}) }}"
+            class="btn btn-default">
             Sell
           </a>
         </td>

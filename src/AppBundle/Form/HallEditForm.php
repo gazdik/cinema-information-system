@@ -11,7 +11,7 @@ class HallEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('number', 'text', array(
+            ->add('name', 'text', array(
                 'required' => true,
             ))
             ->add('capacity', 'integer', array(

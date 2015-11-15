@@ -31,6 +31,14 @@
   <li {% if active == 'cashier' %} class="active"{% endif %}>
     <a href="{{ path('cashier') }}">Cashier</a>
   </li>
+  <ul>
+    <li {% if active == 'cashier-reservations' %} class="active"{% endif %}>
+      <a href="{{ path('cashier-reservations')}}">Sell reservation</a>
+    </li>
+    <li {% if active == 'cashier-tickets' %} class="active"{% endif %}>
+      <a href="{{ path('cashier-tickets') }}">Sell new ticket</a>
+    </li>
+  </ul>
 </ul>
 {# {% endif %} #}
 
