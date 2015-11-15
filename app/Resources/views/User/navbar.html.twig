@@ -8,7 +8,7 @@
     href="{{ path('cinemas') }}">Cinemas</a>
   </li>
 
-  {# any user has been logged in, TODO: the route needs to be changed #}
+  {# any user has been logged in #}
   {% if app.user != null and is_granted("ROLE_USER") %}
     <li>
       <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
@@ -20,13 +20,12 @@
     </li>
   {% endif %}
 
-  {# Cashier has been logged in #}
+  {# a cashier has been logged in #}
   {% if app.user != null and is_granted("ROLE_CASHIER") %}
     <li>
       <a href="{{ path('cashier') }}">System</a>
     </li>
   {% endif %}
-
 
   {#logout / login #}
   <li>
