@@ -24,10 +24,10 @@ class Hall
     private $id;
 
     /**
-     * @ORM\Column(name="number", type="integer")
-     * @var integer
+     * @ORM\Column(name="name", type="string")
+     * @var string
      */
-    private $number;
+    private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cinema", inversedBy="halls")
@@ -40,6 +40,13 @@ class Hall
      */
     private $seats;
 
+    /**
+     *
+     */
+    public function getCinemaAndName()
+    {
+        return $this->cinema->getName() . ': ' . $this->name;
+    }
 
     /**
      * Constructor
@@ -49,32 +56,7 @@ class Hall
         $this->seats = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Return capacity
-     *
-     * @return integer
-     */
-    public function getCapacity()
-    {
-        return $this->seats->count();
-    }
 
-    /**
-     * Set capacity
-     * @param integer $capacity
-     */
-    public function setCapacity($capacity)
-    {
-        $this->seats->clear();
-
-        for ($i = 1; $i <= $capacity; $i++) {
-            $seat = new Seat();
-            $seat->setHall($this);
-            $seat->setNumber($i);
-
-            $this->seats->add($seat);
-        }
-    }
 
     /**
      * Get id
@@ -84,6 +66,30 @@ class Hall
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Hall
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -142,29 +148,5 @@ class Hall
     public function getSeats()
     {
         return $this->seats;
-    }
-
-    /**
-     * Set number
-     *
-     * @param integer $number
-     *
-     * @return Hall
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-    /**
-     * Get number
-     *
-     * @return integer
-     */
-    public function getNumber()
-    {
-        return $this->number;
     }
 }

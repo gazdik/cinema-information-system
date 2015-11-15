@@ -38,8 +38,8 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
           ->from('AppBundle:Movie', 'm');
 
         if ($name) {
-            $qb->andWhere('m.name = ?1')
-                ->setParameter(1, $name);
+            $qb->andWhere($qb->expr()->like('m.name', '?1'))
+                ->setParameter(1, '%'.$name.'%');
         }
 
         if ($length) {
@@ -56,6 +56,25 @@ class MovieRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('g.genre = ?3')
                 ->setParameter(3, $genre);
         }
+
+        $qb->orderBy('m.name', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
+     * Find by name.
+     */
+    public function findLikeName($name)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('m')
+          ->from('AppBundle:Movie', 'm')
+          ->where($qb->expr()->like('m.name', '?1'))
+            ->setParameter(1, '%'.$name.'%');
 
         $qb->orderBy('m.name', 'ASC');
 

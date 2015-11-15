@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ticket
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TicketRepository")
  */
 class Ticket
 {
@@ -85,6 +85,14 @@ class Ticket
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

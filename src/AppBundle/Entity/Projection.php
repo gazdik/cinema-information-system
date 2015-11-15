@@ -81,9 +81,9 @@ class Projection
       return $this->date->format('j.n.Y');
     }
 
-    public function getHallNumber()
+    public function getHallName()
     {
-      return $this->hall->getNumber();
+      return $this->hall->getName();
     }
 
     public function getCinemaName()

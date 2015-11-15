@@ -1,0 +1,67 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme form ':Form:dashboard.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+  $('#profit_movie').autocompleter({url_list: '/query/movie-search', url_get: '/query/movie-get/'});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Profit</h1>
+
+{# Add cinema form #}
+<div class="add-content">
+
+{# Display error message #}
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.movie) }}
+{{ form_row(form.cinemas) }}
+
+{{ form_widget(form.show) }}
+{{ form_widget(form.clear) }}
+
+{{ form_end(form) }}
+</div>
+
+{% if profit.valid %}
+{# Profit window #}
+<div class="profit">
+  {# Movie name #}
+  {% if profit.movie %}
+  <h3>Movie</h3>
+  <ul class="list-unstyled">
+    <li>{{ profit.movie.name }}</li>
+  </ul>
+  {% endif %}
+
+  {% if not profit.cinemas.isEmpty %}
+  {# Cinema name #}
+  <h3>Cinema</h3>
+  <ul class="list-unstyled">
+    {% for cinema in profit.cinemas %}
+        <li>{{ cinema.name }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {# Total profit #}
+  <h3>Total profit</h3>
+  <p>
+    {{ profit.value }}
+  </p>
+</div>
+{% endif %}
+
+{% endblock %}

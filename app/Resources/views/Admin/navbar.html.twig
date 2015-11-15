@@ -3,30 +3,36 @@
     <a href="{{ path('cinema-list') }}">Cinemas</a>
   </li>
   <li {% if active == 'projections' %} class="active"{% endif %}>
-    <a href="#">Screenings</a>
+    <a href="{{ path('projection-list') }}">Screenings</a>
   </li>
   <li {% if active == 'movies' %} class="active"{% endif %}>
     <a href="{{ path('movie-list') }}">Movies</a>
   </li>
   <li {% if active == 'genres' %} class="active"{% endif %}>
-    <a href="#">Genres</a>
+    <a href="{{ path('genre-list') }}">Genres</a>
   </li>
-  <li {% if active == 'price-list' %} class="active"{% endif %}>
-    <a href="#">Price List</a>
-  </li>
-  <li {% if active == 'reservations' %} class="active"{% endif %}>
-    <a href="#">Reservations</a>
+  <li {% if active == 'categories' %} class="active"{% endif %}>
+    <a href="{{ path('category-list') }}">Price List</a>
   </li>
 </ul>
 
 {# a manager has been logged in #}
-{% if app.user != null and is_granted("ROLE_MANAGER") %}
+{# {% if app.user != null and is_granted("ROLE_MANAGER") %} #}
 <ul class="nav nav-sidebar">
   <li {% if active == 'profit' %} class="active"{% endif %}>
-    <a href="">Profit</a>
+    <a href="{{ path('profit') }}">Profit</a>
   </li>
 </ul>
-{% endif %}
+{# {% endif %} #}
+
+{# a cashier has been logged in #}
+{# {% if app.user != null and is_granted("ROLE_CASHIER") %} #}
+<ul class="nav nav-sidebar">
+  <li {% if active == 'cashier' %} class="active"{% endif %}>
+    <a href="{{ path('cashier') }}">Cashier</a>
+  </li>
+</ul>
+{# {% endif %} #}
 
 <ul class="nav nav-sidebar">
   <li>

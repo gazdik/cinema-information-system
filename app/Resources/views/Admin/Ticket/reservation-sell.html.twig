@@ -1,0 +1,23 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme form ':Form:dashboard.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">Reservation sell</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.priceCategory ) }}
+
+{{ form_widget(form.sell) }}
+
+{{ form_end(form) }}
+
+{% endblock %}

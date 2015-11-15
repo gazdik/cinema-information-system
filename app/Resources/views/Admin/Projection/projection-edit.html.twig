@@ -1,0 +1,36 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme form ':Form:dashboard.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script type="text/javascript">
+  $('#projectionedit_movie').autocompleter({url_list: '/query/movie-search', url_get: '/query/movie-get/'}).val({{ projection.movie.id }}).data('autocomplete');
+</script>
+{% endblock %}
+
+{% block content %}
+<h1 class="page-header">Projection edit</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.date) }}
+{{ form_row(form.start) }}
+{{ form_row(form.end) }}
+{{ form_row(form.movie) }}
+{{ form_row(form.hall) }}
+
+{{ form_widget(form.save) }}
+{{ form_widget(form.delete) }}
+
+{{ form_end(form) }}
+
+{% endblock %}

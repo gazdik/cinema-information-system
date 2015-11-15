@@ -1,0 +1,94 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme formAdd ':Form:add.html.twig' %}
+{% form_theme formSearch ':Form:search.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ form_javascript(formAdd) }}
+{{ form_javascript(formSearch) }}
+<script type="text/javascript">
+  $('#projectionadd_movie').autocompleter({url_list: '/query/movie-search', url_get: '/query/movie-get/'});
+</script>
+{% endblock %}
+
+
+
+{# Add stylesheet for date picker #}
+{% block stylesheets %}
+{{ parent() }}
+{{ form_stylesheet(formAdd) }}
+{{ form_stylesheet(formSearch) }}
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="page-header">Projections</h1>
+
+{# Add cinema form #}
+<div class="add-content">
+
+{# Display error message #}
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(formAdd) }}
+{{ form_errors(formAdd) }}
+
+{{ form_row(formAdd.date) }}
+{{ form_row(formAdd.start) }}
+{{ form_row(formAdd.end) }}
+{{ form_row(formAdd.movie) }}
+{{ form_row(formAdd.hall) }}
+
+{{ form_widget(formAdd.add) }}
+
+{{ form_end(formAdd) }}
+</div>
+
+<hr>
+
+{# Search bar #}
+<div class="bg-searchform">
+{{ form_start(formSearch) }}
+{{ form_errors(formSearch) }}
+
+{{ form_row(formSearch.movie) }}
+{{ form_row(formSearch.date) }}
+{{ form_row(formSearch.cinema) }}
+{{ form_row(formSearch.genre) }}
+
+{{ form_widget(formSearch.save) }}
+
+{{ form_end(formSearch) }}
+</div>
+
+
+{# Table with projections #}
+<table class="table table-striped">
+  <tr>
+    <th>Time</th>
+    <th>Date</th>
+    <th>Movie</th>
+    <th>Genre</th>
+    <th>Cinema</th>
+    <th></th>
+  </tr>
+  {% for projection in projections %}
+  <tr>
+    <td>{{ projection.s_start }}</td>
+    <td>{{ projection.s_date }}</td>
+    <td>{{ projection.getMovieName }}</td>
+    <td>{{ projection.getGenre }}</td>
+    <td>{{ projection.getCinemaName }}</td>
+    <td><a href="{{ path('projection-edit', {'id' : projection.getId}) }}"
+      class="btn btn-default">Edit</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

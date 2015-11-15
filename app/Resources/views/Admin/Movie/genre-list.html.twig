@@ -1,0 +1,49 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme formAdd ':Form:add.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">Movies</h1>
+
+{# Add cinema form #}
+<div class="add-content">
+
+{# Display error message #}
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(formAdd) }}
+{{ form_errors(formAdd) }}
+
+{{ form_row(formAdd.genre) }}
+
+{{ form_widget(formAdd.add) }}
+
+{{ form_end(formAdd) }}
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <table class="table table-striped">
+      <tr>
+        <th>Genre</th>
+        <th></th>
+      </tr>
+
+      {% for genre in genres %}
+      <tr>
+        <td>{{ genre.getGenre }}</td>
+        <td><a href="{{ path('genre-edit', {'genre_name' : genre.getGenre }) }}"
+          class="btn btn-default">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -27,6 +27,22 @@ class ProjectionRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    public function findAllOrdered()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p')
+            ->from('AppBundle:Projection', 'p');
+
+        $qb->orderBy('p.date', 'ASC');
+        $qb->addOrderBy('p.start', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+
+    }
+
     public function findByDateOrdered($date)
     {
         $query = $this->getEntityManager()->createQuery(
@@ -56,8 +72,8 @@ class ProjectionRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if ($movie) {
-            $qb->andWhere('m.name = ?2')
-                ->setParameter(2, $movie);
+            $qb->andWhere($qb->expr()->like('m.name', '?2'))
+                ->setParameter(2, '%'.$movie.'%');
         }
 
         if ($genre) {

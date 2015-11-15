@@ -1,0 +1,52 @@
+{% extends ':Admin:main.html.twig' %}
+
+{% form_theme formAdd ':Form:add.html.twig' %}
+
+{% block content %}
+<h1 class="page-header">Price List</h1>
+
+{# Add cinema form #}
+<div class="add-content">
+
+{# Display error message #}
+{% if errorMsg %}
+<div class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+{% endif %}
+
+{{ form_start(formAdd) }}
+{{ form_errors(formAdd) }}
+
+{{ form_row(formAdd.category) }}
+{{ form_row(formAdd.categoryPrice) }}
+
+{{ form_widget(formAdd.add) }}
+
+{{ form_end(formAdd) }}
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <table class="table table-striped">
+      <tr>
+        <th>Category</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+
+      {% for category in categories %}
+      <tr>
+        <td>{{ category.category }}</td>
+        <td>{{ category.categoryPrice }}</td>
+        <td><a href="{{ path('category-edit', {'category_name' : category.category }) }}"
+          class="btn btn-default">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}
