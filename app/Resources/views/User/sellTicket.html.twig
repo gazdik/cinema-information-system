@@ -1,0 +1,59 @@
+{% extends ':User:main.html.twig' %}
+
+{% block title %}Reservations{% endblock %}
+
+{% block sidebar %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+  {% if err %}
+    <div class="alert alert-danger">
+      {{ err }}
+    </div>
+  {% endif %}
+
+  {{ form_start(getUserForm) }}
+  {{ form_widget(getUserForm) }}
+  {{ form_end(getUserForm) }}
+
+  {% if app.session.flashBag.has('success') %}
+          <div class="alert alert-success">
+              {% for msg in app.session.flashBag.get('success') %}
+                  {{ msg }}
+              {% endfor %}
+          </div>
+  {% endif %}
+
+  {% if user != null %}
+    <h1 class="page-header">{{ user.getUsername }}</h1>
+
+    {# Table with tickets #}
+    <table class="table table-striped">
+      <tr>
+        <th>Date</th>
+        <th>Movie</th>
+        <th>Cinema</th>
+        <th>Hall number</th>
+        <th>Seat number</th>
+        <th>Price category</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for ticket in tickets %}
+      <tr>
+        <td>{{ ticket.getProjection.s_date }}</td>
+        <td>{{ ticket.getProjection.getMovieName}}</td>
+        <td>Kino {{ ticket.projection.getCinemaName }}</td>
+        <td>{{ ticket.getProjection.getHallNumber }}</td>
+        <td>{{ ticket.getSeat.getNumber }}</td>
+        <td>{{ ticket.getPriceCategory.getCategory }}</td>
+        <td>{{ ticket.getTicketPrice }}</td>
+        <td><a href="/tickets/cancel/{{ user.getId }}/{{ ticket.getId }}">Cancel</a></td>
+        <td><a href="/tickets/sell/{{ user.getId }}/{{ ticket.getId }}">Sell</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}

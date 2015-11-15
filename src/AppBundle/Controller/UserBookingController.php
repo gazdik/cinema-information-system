@@ -34,6 +34,7 @@ class UserBookingController extends Controller
         ->select('t')
         ->from('AppBundle:Ticket', 't')
         ->where('t.projection = ?1')
+        ->andWhere('t.payment_date IS NULL')
         ->setParameter(1, $projection)
         ->getQuery()
         ->getResult();

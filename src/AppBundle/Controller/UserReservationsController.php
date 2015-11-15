@@ -17,7 +17,7 @@ class UserReservationsController extends Controller {
   *@Security("has_role('ROLE_USER')")
   *@Route("/reservations", name ="reservations")
   */
-  public function reservationsAction(Request $request) {
+  public function displayReservationsAction(Request $request) {
 
     $em = $this->getDoctrine()->getManager();
 
