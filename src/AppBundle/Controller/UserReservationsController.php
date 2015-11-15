@@ -26,6 +26,7 @@ class UserReservationsController extends Controller {
       ->select('t')
       ->from('AppBundle:Ticket', 't')
       ->where('t.user = ?1')
+      ->andWhere('t.payment_date IS NULL')
       ->setParameter(1, $this->getUser())
       ->getQuery()
       ->getResult();

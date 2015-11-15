@@ -34,7 +34,6 @@ class UserBookingController extends Controller
         ->select('t')
         ->from('AppBundle:Ticket', 't')
         ->where('t.projection = ?1')
-        ->andWhere('t.payment_date IS NULL')
         ->setParameter(1, $projection)
         ->getQuery()
         ->getResult();
@@ -67,7 +66,7 @@ class UserBookingController extends Controller
         $em->flush();
 
         //TODO: the route needs to be changed
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('reservations');
       }
 
       return $this->render('User/booking.html.twig', array(
