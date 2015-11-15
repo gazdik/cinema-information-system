@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             // TODO: Move to test enviroment?
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            // Autocomplete bundle
+            new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
