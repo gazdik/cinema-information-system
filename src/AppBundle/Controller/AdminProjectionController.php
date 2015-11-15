@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,9 @@ use AppBundle\Form\SearchProjectionsForm;
 use AppBundle\Form\ProjectionEditForm;
 use AppBundle\Form\ProjectionAddForm;
 
+/**
+ * @Security("has_role('ROLE_MANAGER')")
+ */
 class AdminProjectionController extends Controller
 {
     /**
@@ -122,37 +126,6 @@ class AdminProjectionController extends Controller
         ));
     }
 
-    /**
-     * @Route("/query/movie-search", name="movie-search")
-     */
-    public function searchMovieAction(Request $request)
-    {
-        $q = $request->get('term');
-        $em = $this->getDoctrine()->getManager();
-        $movies = $em->getRepository('AppBundle:Movie')->findLikeName($q);
-
-        $results = array();
-        foreach ($movies as $movie) {
-            $results[] = array(
-                'id' => $movie->getId(),
-                'label' => $movie->getName(),
-                'value' => $movie->getName()
-            );
-        }
-
-        return new JsonResponse($results);
-    }
-
-    /**
-     * @Route("/query/movie-get/{id}", name="movie-get")
-     */
-    public function getMovieAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $movie = $em->getRepository('AppBundle:Movie')->find($id);
-
-        return new Response($movie->getName());
-    }
 
 
 }

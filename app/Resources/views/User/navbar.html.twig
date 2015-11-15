@@ -20,10 +20,10 @@
     </li>
   {% endif %}
 
+  {# Cashier has been logged in #}
   {% if app.user != null and is_granted("ROLE_CASHIER") %}
     <li>
-      <a {% if app.request.get('_route') == 'cinema-list' %} class="active"{% endif %}
-      href="{{ path('cinema-list') }}">System</a>
+      <a href="{{ path('cashier') }}">System</a>
     </li>
   {% endif %}
 

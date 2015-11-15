@@ -15,8 +15,11 @@ use AppBundle\Entity\Seat;
 use AppBundle\Entity\Form\UserForm;
 use AppBundle\Form\FindUserForm;
 
-class AdminCashierController extends Controller {
-
+/**
+ * @Security("has_role('ROLE_CASHIER')")
+ */
+class AdminCashierController extends Controller
+{
   /**
    * @Route("/dashboard/cashier", name="cashier")
    */
@@ -30,7 +33,6 @@ class AdminCashierController extends Controller {
           'active' => 'cashier',
       ));
   }
-
 
   /**
    * @Route("/dashboard/cashier/tickets", name="cashier-tickets")
@@ -123,33 +125,31 @@ class AdminCashierController extends Controller {
       ));
   }
 
-
   /**
-  *@Security("has_role('ROLE_CASHIER')")
-  *@Route("/dashboard/cashier/reservations/{action}/{user_id}/{ticket_id}",
-  *       defaults={"action" = "display",
-  *                 "user_id" = -1,
-  *                 "ticket_id" = -1},
-  *       name ="cashier-reservations")
-  */
-  public function cashierReservationsController (Request $request, $action, $user_id, $ticket_id) {
-
-    $em = $this->getDoctrine()->getManager();
-    $userManager = $this->container->get('fos_user.user_manager');
-    $err = '';
+   *@Route("/dashboard/cashier/reservations/{action}/{user_id}/{ticket_id}",
+   *       defaults={"action" = "display",
+   *                 "user_id" = -1,
+   *                 "ticket_id" = -1},
+   *       name ="cashier-reservations")
+   */
+  public function cashierReservationsController(Request $request, $action, $user_id, $ticket_id)
+  {
+      $em = $this->getDoctrine()->getManager();
+      $userManager = $this->container->get('fos_user.user_manager');
+      $err = '';
     //object for retrieving user's mail
     $userForm = new UserForm();
-    $user = null;
-    $tickets = null;
+      $user = null;
+      $tickets = null;
 
     //reservation will be cancelled
     if ($action == 'cancel') {
-      //get ticket
+        //get ticket
       $ticket = $em->getRepository('AppBundle:Ticket')
           ->find($ticket_id);
 
-      $em->remove($ticket);
-      $em->flush();
+        $em->remove($ticket);
+        $em->flush();
 
       //notify, that ticket has been removed
       $url = $this->generateUrl(
@@ -160,22 +160,22 @@ class AdminCashierController extends Controller {
         )
       );
 
-      return $this->redirect($url);
+        return $this->redirect($url);
     }
 
     //display a message, that the reservation has been cancelled
     if ($action == 'cancelled') {
-      $request->getSession()->getFlashBag()
+        $request->getSession()->getFlashBag()
         ->add('success', 'Reservation has been successfully cancelled');
     }
 
     //ticket will be sold
     if ($action == 'sell') {
-      $ticket = $em->getRepository('AppBundle:Ticket')
+        $ticket = $em->getRepository('AppBundle:Ticket')
           ->find($ticket_id);
 
-      $ticket->setPaymentDate(new \DateTime('now'));
-      $em->flush();
+        $ticket->setPaymentDate(new \DateTime('now'));
+        $em->flush();
 
       //notify, that ticket has been sold
       $url = $this->generateUrl(
@@ -186,30 +186,30 @@ class AdminCashierController extends Controller {
         )
       );
 
-      return $this->redirect($url);
+        return $this->redirect($url);
     }
 
     //display a message, that the ticket has been sold
     if ($action == 'sold') {
-      $request->getSession()->getFlashBag()
+        $request->getSession()->getFlashBag()
         ->add('success', 'Ticket has been successfully sold');
     }
 
     //session is running, so get the user without resubmitting the form
     if ($user_id != -1) {
-      $user = $userManager->findUserBy(array('id'=>$user_id));
+        $user = $userManager->findUserBy(array('id' => $user_id));
     }
 
-    $getUserForm = $this->createForm(new FindUserForm(), $userForm);
-    $getUserForm->handleRequest($request);
+      $getUserForm = $this->createForm(new FindUserForm(), $userForm);
+      $getUserForm->handleRequest($request);
 
     //get an user from the form
     if ($getUserForm->isSubmitted()) {
-      $user = $userManager->findUserByEmail($userForm->getEmail());
+        $user = $userManager->findUserByEmail($userForm->getEmail());
 
-      if (!$user) {
-        $err = "No user found";
-      }
+        if (!$user) {
+            $err = 'No user found';
+        }
     }
 
       //get user's tickets- only reservations
@@ -222,7 +222,7 @@ class AdminCashierController extends Controller {
       ->getQuery()
       ->getResult();
 
-    return $this->render('Admin/Ticket/cashier-reservations.html.twig', array(
+      return $this->render('Admin/Ticket/cashier-reservations.html.twig', array(
       'active' => 'cashier-reservations',
       'user' => $user,
       'getUserForm' => $getUserForm->createView(),

@@ -3,14 +3,17 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Hall;
 use AppBundle\Form\HallEditForm;
 
+/**
+ * @Security("has_role('ROLE_MANAGER')")
+ */
 class AdminHallController extends Controller
 {
-
     /**
      * @Route("/dashbaord/halls/edit/{id}", name="hall-edit")
      */

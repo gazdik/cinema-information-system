@@ -188,6 +188,26 @@ body {
   }
 }
 
+// /* Sidebar navigation */
+// .nav-sidebar {
+//   margin-right: -21px;
+//   /* 20px padding + 1px border */
+//   margin-bottom: 20px;
+//   margin-left: -20px;
+// }
+// .nav-sidebar > li > a {
+//   padding-right: 20px;
+//   padding-left: 20px;
+//   color: #000;
+// }
+// .nav-sidebar > .active > a,
+// .nav-sidebar > .active > a:hover,
+// .nav-sidebar > .active > a:focus {
+//   color: #fff;
+//   background-color: #cb4a4a;
+// }
+
+
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px;
@@ -195,17 +215,36 @@ body {
   margin-bottom: 20px;
   margin-left: -20px;
 }
-.nav-sidebar > li > a {
+.nav-sidebar a {
   padding-right: 20px;
   padding-left: 20px;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
   color: #000;
+  text-decoration: none;
 }
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
+
+.nav-sidebar li {
+  list-style: none;
+}
+
+.nav li a:hover, .nav li a:focus {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.nav-sidebar .active a,
+.nav-sidebar .active a:hover,
+.nav-sidebar .active a:focus {
+
   color: #fff;
   background-color: #cb4a4a;
+  text-decoration: none;
+  // background-color: #eee;
 }
+
+
 
 // -----------------------------------------------------------------------------
 // Main content
@@ -334,3 +373,7 @@ body {
   -moz-border-radius: 0;
   background-image: none;
 }
+
+//==============================================================================
+//== FOSUserBundle classes
+//==============================================================================

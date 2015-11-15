@@ -11,6 +11,9 @@ use AppBundle\Form\UserSearchForm;
 use AppBundle\Form\UserEditForm;
 
 
+/**
+ * @Security("has_role('ROLE_ADMIN')")
+ */
 class AdminUserController extends Controller
 {
 

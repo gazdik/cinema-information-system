@@ -19,7 +19,7 @@ class SeatRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $em->createQuery('SELECT s FROM AppBundle\Entity\Seat s
             WHERE s.hall IN (SELECT IDENTITY(p.hall) FROM AppBundle\Entity\Projection p WHERE p.id = ?1)
-            AND s NOT IN (SELECT t FROM AppBundle\Entity\Ticket t JOIN AppBundle\Entity\Projection p2 WHERE p2.id = ?1)');
+            AND s.id NOT IN (SELECT IDENTITY(t.seat) FROM AppBundle\Entity\Ticket t JOIN AppBundle\Entity\Projection p2 WHERE p2.id = ?1)');
         $query->setParameter(1, $projection_id);
         return $query->getResult();
     }

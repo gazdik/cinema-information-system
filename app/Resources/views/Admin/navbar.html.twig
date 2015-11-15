@@ -1,3 +1,5 @@
+{# a manager has been logged in #}
+{% if app.user != null and is_granted("ROLE_MANAGER") %}
 <ul class="nav nav-sidebar">
   <li {% if active == 'cinemas' %} class="active"{% endif %}>
     <a href="{{ path('cinema-list') }}">Cinemas</a>
@@ -15,18 +17,19 @@
     <a href="{{ path('category-list') }}">Price List</a>
   </li>
 </ul>
+{% endif %}
 
 {# a manager has been logged in #}
-{# {% if app.user != null and is_granted("ROLE_MANAGER") %} #}
+{% if app.user != null and is_granted("ROLE_MANAGER") %}
 <ul class="nav nav-sidebar">
   <li {% if active == 'profit' %} class="active"{% endif %}>
     <a href="{{ path('profit') }}">Profit</a>
   </li>
 </ul>
-{# {% endif %} #}
+{% endif %}
 
 {# a cashier has been logged in #}
-{# {% if app.user != null and is_granted("ROLE_CASHIER") %} #}
+{% if app.user != null and is_granted("ROLE_CASHIER") %}
 <ul class="nav nav-sidebar">
   <li {% if active == 'cashier' %} class="active"{% endif %}>
     <a href="{{ path('cashier') }}">Cashier</a>
@@ -40,7 +43,17 @@
     </li>
   </ul>
 </ul>
-{# {% endif %} #}
+{% endif %}
+
+{# an admin has been logged in #}
+{% if app.user != null and is_granted("ROLE_ADMIN") %}
+<ul class="nav nav-sidebar">
+  <li {% if active == 'users' %} class="active"{% endif %}>
+    <a href="{{ path('user-list') }}">Users</a>
+  </li>
+</ul>
+{% endif %}
+
 
 <ul class="nav nav-sidebar">
   <li>

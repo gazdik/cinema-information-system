@@ -4,11 +4,13 @@
 
 {% block content %}
 <h1 class="page-header">Booking</h1>
-Movie {{ projection.getMovieName }}<br>
-Cinema {{ projection.getCinemaName }}<br>
-Date {{ projection.s_date }}<br>
-Time {{ projection.s_start }}<br>
-Hall {{ projection.hallName }}<br>
+<div class="add-content">
+<b>Movie: </b>{{ projection.getMovieName }}<br>
+<b>Cinema: </b>{{ projection.getCinemaName }}<br>
+<b>Date: </b>{{ projection.s_date }}<br>
+<b>Time: </b>{{ projection.s_start }}<br>
+<b>Hall: </b>{{ projection.hallName }}<br>
+</div>
 
 <div class="bg-searchform">
   {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}

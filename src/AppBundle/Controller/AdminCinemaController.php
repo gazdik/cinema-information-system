@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Cinema;
@@ -11,6 +12,9 @@ use AppBundle\Form\CinemaEditForm;
 use AppBundle\Form\CinemaAddForm;
 use AppBundle\Form\HallAddForm;
 
+/**
+ * @Security("has_role('ROLE_MANAGER')")
+ */
 class AdminCinemaController extends Controller
 {
     /**

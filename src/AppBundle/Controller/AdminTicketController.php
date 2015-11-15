@@ -16,6 +16,9 @@ use AppBundle\Form\TicketFindForm;
 use AppBundle\Form\ReservationSellForm;
 use AppBundle\Form\PriceCategoryAddForm;
 
+/**
+ * @Security("has_role('ROLE_MANAGER')")
+ */
 class AdminTicketController extends Controller
 {
 

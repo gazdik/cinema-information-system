@@ -35,32 +35,41 @@
 {{ form_end(form) }}
 </div>
 
-{% if profit.valid %}
 {# Profit window #}
-<div class="profit">
+{% if profit.valid %}
+<div class="row">
+
+{# Total profit #}
+<div class="col-md-4">
+<h3>Total profit</h3>
+<p>
+  {{ profit.value }}
+</p>
+</div>
+
   {# Movie name #}
   {% if profit.movie %}
+  <div class="col-md-4">
   <h3>Movie</h3>
   <ul class="list-unstyled">
     <li>{{ profit.movie.name }}</li>
   </ul>
+  </div>
   {% endif %}
 
   {% if not profit.cinemas.isEmpty %}
   {# Cinema name #}
+  <div class="col-md-4">
   <h3>Cinema</h3>
   <ul class="list-unstyled">
     {% for cinema in profit.cinemas %}
         <li>{{ cinema.name }}</li>
     {% endfor %}
   </ul>
+  </div>
   {% endif %}
 
-  {# Total profit #}
-  <h3>Total profit</h3>
-  <p>
-    {{ profit.value }}
-  </p>
+
 </div>
 {% endif %}
 
