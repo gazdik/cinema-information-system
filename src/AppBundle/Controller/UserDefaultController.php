@@ -17,6 +17,8 @@ class UserDefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        return $this->redirect('/programme');
+        /*
         $em = $this->getDoctrine()->getManager();
         $projections = $em->getRepository('AppBundle:Projection')
           ->findByDateOrdered(new \DateTime());
@@ -24,6 +26,6 @@ class UserDefaultController extends Controller
         return $this->render('User/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'projections' => $projections,
-        ));
+        ));*/
     }
 }

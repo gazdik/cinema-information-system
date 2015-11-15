@@ -20,7 +20,7 @@
     </li>
   {% endif %}
 
-  {# a cashier has been logged in, TODO: the route needs to be changed #}
+  {# a cashier has been logged in #}
   {% if app.user != null and is_granted("ROLE_CASHIER") %}
     <li>
       <a {% if app.request.get('_route') == 'sellTicket' %} class="active"{% endif %}
@@ -37,11 +37,11 @@
   {% endif %}
 
   {# an admin has been logged in, TODO: the route needs to be changed #}
-  {# {% if app.user != null and is_granted("ROLE_CASHIER") %} #}
+  {% if app.user != null and is_granted("ROLE_CASHIER") %}
     <li>
       <a {% if app.request.get('_route') == 'cinema-list' %} class="active"{% endif %}
       href="{{ path('cinema-list') }}">System</a>
     </li>
-  {# {% endif %} #}
-  
+  {% endif %}
+
 </ul>
