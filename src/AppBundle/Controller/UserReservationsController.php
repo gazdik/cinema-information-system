@@ -17,7 +17,7 @@ class UserReservationsController extends Controller {
   *@Security("has_role('ROLE_USER')")
   *@Route("/reservations", name ="reservations")
   */
-  public function reservationsAction(Request $request) {
+  public function displayReservationsAction(Request $request) {
 
     $em = $this->getDoctrine()->getManager();
 
@@ -26,6 +26,7 @@ class UserReservationsController extends Controller {
       ->select('t')
       ->from('AppBundle:Ticket', 't')
       ->where('t.user = ?1')
+      ->andWhere('t.payment_date IS NULL')
       ->setParameter(1, $this->getUser())
       ->getQuery()
       ->getResult();

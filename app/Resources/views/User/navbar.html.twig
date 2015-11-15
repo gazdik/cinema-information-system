@@ -23,8 +23,8 @@
   {# a cashier has been logged in, TODO: the route needs to be changed #}
   {% if app.user != null and is_granted("ROLE_CASHIER") %}
     <li>
-      <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
-      href="{{ path('cinemas') }}">Tickets</a>
+      <a {% if app.request.get('_route') == 'sellTicket' %} class="active"{% endif %}
+      href="{{ path('sellTicket') }}">Tickets</a>
     </li>
   {% endif %}
 
