@@ -65,8 +65,8 @@ class UserBookingController extends Controller
         $em->persist($ticket);
         $em->flush();
 
-        //TODO: the route needs to be changed
-        return $this->redirectToRoute('homepage');
+        // redirect to reservations page
+        return $this->redirectToRoute('reservations');
       }
 
       return $this->render('User/booking.html.twig', array(

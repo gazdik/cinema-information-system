@@ -52,9 +52,9 @@
     <td>{{ projection.s_date }}</td>
     <td>{{ projection.getMovieName }}</td>
     <td>{{ projection.getGenre }}</td>
-    <td>Kino
-      {{ projection.getCinemaName }}</td>
-    <td><a href="programme/booking/{{ projection.getId }}">Book it</a></td>
+    <td>{{ projection.getCinemaName }}</td>
+    <td><a href="programme/booking/{{ projection.getId }}"
+      class="btn btn-default">Book it</a></td>
   </tr>
   {% endfor %}
 </table>

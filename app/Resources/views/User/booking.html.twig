@@ -1,14 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends ':User:main.html.twig' %}
 
 {% block title %}Booking{% endblock %}
 
-{% block body %}
+{% block content %}
 <h1 class="page-header">Booking</h1>
 Movie {{ projection.getMovieName }}<br>
 Cinema {{ projection.getCinemaName }}<br>
 Date {{ projection.s_date }}<br>
 Time {{ projection.s_start }}<br>
-Hall {{ projection.hallNumber }}<br>
+Hall {{ projection.hallName }}<br>
 
 <div class="bg-searchform">
   {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}

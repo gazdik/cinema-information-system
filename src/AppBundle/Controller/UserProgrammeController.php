@@ -38,7 +38,7 @@ class UserProgrammeController extends Controller
 
             // Get projections for 1 days
             $date_to = new \DateTime();
-            $date_to->modify('+5 days');
+            $date_to->modify('+1 days');
             $projections = $em->getRepository('AppBundle:Projection')
                 ->findFromToOrderer(new \DateTime(), $date_to);
         }

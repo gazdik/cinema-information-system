@@ -843,7 +843,7 @@ private $priceCategories = array(
 
           for ($i = 0; $i < rand(1, 3); ++$i) {
               $hall = new Hall();
-              $hall->setNumber($i);
+              $hall->setName($i);
               $hall->setCinema($cinema);
 
               for ($j = 0; $j < rand(100, 500); ++$j) {
