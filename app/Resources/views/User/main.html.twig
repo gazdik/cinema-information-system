@@ -13,6 +13,13 @@
   <!-- Content -->
   <div class="container bg-content">
     <div class="row">
+      {% if app.user %}
+        <div class="pull-right">
+          {{ app.user.getName }}  <a href="/logout" class="btn btn-default">Logout</a>
+        </div>
+      {% else %}
+        <a href="/login" class="btn btn-default pull-right" >Login</a>
+      {% endif %}
 
       <div class="col-md-3 col-lg-2 bg-nav">
         {% block navbar %}

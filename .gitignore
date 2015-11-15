@@ -11,3 +11,7 @@
 /vendor/
 /web/bundles/
 *.php~
+.idea*
+.buildpath
+.project
+.sett*
