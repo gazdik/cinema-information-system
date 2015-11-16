@@ -5,6 +5,7 @@
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register  form-signin'}}) }}
 
 <h2 class="form-signin-heading">Registration Form</h2>
+{{ form_errors(form) }}
 
 {{ form_row(form.name, { 'label': 'Your Name' }) }}
 {{ form_row(form.email, {'label':'Email'})}}
@@ -15,6 +16,5 @@
 
 <button type="submit" class="btn btn-primary btn-lg btn-block" name="_submit">Register</button>
 
-{{ form_errors(form) }}
 
 {{ form_end(form) }}
