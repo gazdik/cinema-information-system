@@ -6,40 +6,44 @@
 
 {% block content %}
 
-{% if projections != null %}
-<h1 class="page-header">Today's Programme</h1>
-<table class="table table-striped">
-  {% for projection in projections %}
-  <tr>
-    <td>{{ projection.s_start }}</td>
-    <td>{{ projection.getCinemaName }} Cinema</td>
-    <td>{{ projection.getMovieName }}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-
-
 <div class="carousel slide" data-ride="carousel" id="carouser-movies">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li class="active" data-slide-to="0" data-target="#carouser-movies"></li>
     <li data-slide-to="1" data-target="#carouser-movies"></li>
-    <li data-slide-to="2" data-target="#carouser-movies"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img alt="" src="http://lorempixel.com/1200/500/food/1"/>
+      <img alt="poster1" src="{{ asset('images/posters/poster2.jpg')}}"/>
     </div>
     <div class="item">
-      <img alt="" src="http://lorempixel.com/1200/500/food/2"/>
-    </div>
-    <div class="item">
-      <img alt="" src="http://lorempixel.com/1200/500/food/4"/>
+      <img alt="poster2" src="{{ asset('images/posters/poster1.jpg')}}"/>
     </div>
   </div>
 </div>
+
+<h2>Today's Programme</h2>
+{# Table with projections #}
+{% if projections != null %}
+<table class="table table-striped">
+  <tr>
+    <th>Time</th>
+    <th>Movie</th>
+    <th>Cinema</th>
+    <th></th>
+  </tr>
+  {% for projection in projections %}
+  <tr>
+    <td>{{ projection.s_start }}</td>
+    <td>{{ projection.getMovieName }}</td>
+    <td>{{ projection.getCinemaName }}</td>
+    <td><a href="programme/booking/{{ projection.getId }}"
+      class="btn btn-default">Book it</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
 {% endblock %}
