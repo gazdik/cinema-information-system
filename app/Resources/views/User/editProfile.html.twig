@@ -1,0 +1,31 @@
+{% extends ':User:main.html.twig' %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">{{ user.name }}</h1>
+
+    {# display success message, if any#}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# display error message, if any#}
+    {% if app.session.flashBag.has('warning') %}
+        <div class="alert alert-danger">
+            {% for msg in app.session.flashBag.get('warning') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# render the form #}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

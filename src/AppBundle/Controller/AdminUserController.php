@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserSearchForm;
 use AppBundle\Form\UserEditForm;
+use AppBundle\Entity\Form\UserForm;
 
 
 /**
@@ -59,7 +61,18 @@ class AdminUserController extends Controller
     public function userEditAction (Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        $userManager = $this->get('fos_user.user_manager');
+
+        //get old user
         $user = $em->getRepository('AppBundle:User')->find($id);
+
+        //create copy
+        $newUser = $userManager->createUser();
+        $newUser->setEmail($user->getEmail());
+        $newUser->setName($user->getName());
+        $newUser->setRoles($user->getRoles());
+        $newUser->setEnabled($user->isEnabled());
+
 
         // The user isn't in db
         if (!$user) {
@@ -71,7 +84,7 @@ class AdminUserController extends Controller
         $errorMsg = '';
 
         // Edit form
-        $form = $this->createForm(new UserEditForm(), $user);
+        $form = $this->createForm(new UserEditForm(), $newUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -89,8 +102,24 @@ class AdminUserController extends Controller
 
             // Save user into db
             if ($form->get('save')->isClicked()) {
-                $em->persist($user);
-                $em->flush();
+                try {
+                    //chceck email
+                    if ($newUser->getEmail() != $user->getEmail())
+                        if ($userManager->findUserByEmail($user->getEmail()) == null) {
+                            $user->setEmail($newUser->getEmail());
+                        } else
+                            throw new Exception('Sorry email address already taken.');
+
+                    //save other values
+                    $user->setName($newUser->getName());
+                    $user->setRoles($newUser->getRoles());
+                    $user->setEnabled($newUser->isEnabled());
+                    $em->persist($user);
+                    $em->flush();
+                } catch(Exception $e) {
+                    $request->getSession()->getFlashBag()
+                        ->add('warning', $e->getMessage());
+                }
 
                 return $this->redirectToRoute('user-edit', array(
                     'id' => $id,

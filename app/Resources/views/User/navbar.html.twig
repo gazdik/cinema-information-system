@@ -11,8 +11,8 @@
   {# any user has been logged in #}
   {% if app.user != null and is_granted("ROLE_USER") %}
     <li>
-      <a {% if app.request.get('_route') == 'cinemas' %} class="active"{% endif %}
-      href="{{ path('cinemas') }}">My account</a>
+      <a {% if app.request.get('_route') == 'editprofile' %} class="active"{% endif %}
+      href="{{ path('editprofile') }}">My account</a>
     </li>
     <li>
       <a {% if app.request.get('_route') == 'reservations' %} class="active"{% endif %}
@@ -27,14 +27,4 @@
     </li>
   {% endif %}
 
-  {#logout / login #}
-  <li>
-    {% if app.user %}
-      <a {% if app.request.get('_route') == 'fos_user_security_logout' %} class="active"{% endif %}
-      href="{{ path('fos_user_security_logout') }}">Logout</a>
-    {% else %}
-      <a {% if app.request.get('_route') == 'fos_user_security_login' %} class="active"{% endif %}
-      href="{{ path('fos_user_security_login') }}">Login</a>
-    {% endif %}
-  </li>
 </ul>

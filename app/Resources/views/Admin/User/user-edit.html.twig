@@ -11,10 +11,19 @@
 </div>
 {% endif %}
 
+  {# display error message, if any#}
+  {% if app.session.flashBag.has('warning') %}
+    <div class="alert alert-danger">
+      {% for msg in app.session.flashBag.get('warning') %}
+        {{ msg }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
 {{ form_start(form) }}
 {{ form_errors(form) }}
 
-{{ form_row(form.username) }}
+{{ form_row(form.name) }}
 {{ form_row(form.email) }}
 {{ form_row(form.roles) }}
 {{ form_row(form.enabled) }}
