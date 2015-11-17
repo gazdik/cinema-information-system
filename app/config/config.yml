@@ -7,7 +7,7 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
-    
+
     registration:
         form:
             type: app_user_registration
@@ -42,7 +42,13 @@ framework:
 
 # DateTime Picker config
 sc_datetimepicker:
-    picker: ~
+    picker:
+        enabled:              true
+        configs:
+            formatter:            js # One of "js"; "php"
+
+# AutocompleterBundle
+pugx_autocompleter:   []
 
 # Twig Configuration
 twig:

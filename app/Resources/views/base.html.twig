@@ -31,14 +31,13 @@
 
         <!-- JavasScripts -->
     {% block javascripts %}
-    {% javascripts filter="?jsqueeze" output="js/app.js"
+      {% javascripts filter="jsqueeze" output="js/app.js"
           "assets/js/jquery.js"
-          "assets/js/jquery-ui.js"
+          "assets/js/jquery-ui.min.js"
           "assets/js/autocompleter-jqueryui.js"
           "assets/js/bootstrap.js"
-          "assets/js/main.js"
       %}
-    <script src="{{ asset_url }}"></script>
+      <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% endblock %}
   </body>

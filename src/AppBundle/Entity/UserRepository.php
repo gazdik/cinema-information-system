@@ -21,7 +21,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         ->from('AppBundle:User', 'u');
 
       if ($user) {
-          $qb->andWhere($qb->expr()->like('u.username', '?1'))
+          $qb->andWhere($qb->expr()->like('u.name', '?1'))
               ->setParameter(1, '%'.$user.'%');
       }
 
@@ -30,7 +30,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
               ->setParameter(2, '%'.$email.'%');
       }
 
-      $qb->orderBy('u.username', 'ASC');
+      $qb->orderBy('u.name', 'ASC');
       $qb->addOrderBy('u.email', 'ASC');
 
       $query = $qb->getQuery();

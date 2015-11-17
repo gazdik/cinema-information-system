@@ -5,7 +5,7 @@
 {% block javascripts %}
 {{ parent() }}
 <script type="text/javascript">
-  $('#profit_movie').autocompleter({url_list: '/query/movie-search', url_get: '/query/movie-get/'});
+  $('#profit_movie').autocompleter({url_list: '{{ asset('query/movie-search') }}', url_get: '{{ asset('query/movie-get') }}/'});
 </script>
 {% endblock %}
 

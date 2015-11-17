@@ -69,7 +69,7 @@ class Hall
         for ($i = 1; $i <= $capacity; $i++) {
             $seat = new Seat();
             $seat->setHall($this);
-            $seat->setName($i);
+            $seat->setNumber($i);
 
             $this->seats->add($seat);
         }
