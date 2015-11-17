@@ -11,7 +11,7 @@ class UserSearchForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array(
+            ->add('name', 'text', array(
                 'required' => false,
             ))
             ->add('email', 'text', array(
