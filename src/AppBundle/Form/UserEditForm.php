@@ -12,7 +12,7 @@ class UserEditForm extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'required' => true,
+                'required' => false,
             ))
             ->add('email', 'email', array(
                 'required' => true,

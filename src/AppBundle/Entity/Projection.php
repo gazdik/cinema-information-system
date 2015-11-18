@@ -93,13 +93,14 @@ class Projection
 
     public function getMovieName()
     {
-      // return $this->movie->getName();
       return $this->movie->getName();
     }
 
     public function getGenre()
     {
-        return $this->movie->getGenre()->getGenre();
+        if ($this->movie->getGenre()) {
+            return $this->movie->getGenre()->getGenre();
+        }
     }
 
     /**
