@@ -94,6 +94,7 @@ class AdminCashierController extends Controller
             .$projectionId.' does not exist.');
         }
 
+
       // get free seats
       $freeSeats = $em->getRepository('AppBundle:Seat')
           ->findFreeSeats($projectionId);
@@ -211,6 +212,9 @@ class AdminCashierController extends Controller
             $err = 'No user found';
         }
     }
+
+      //get rid of any expired reservation
+      $em->getRepository('AppBundle:Ticket')->removeExpiredTickets($user);
 
       //get user's tickets- only reservations
     $tickets = $em->createQueryBuilder()

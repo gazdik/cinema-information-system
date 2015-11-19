@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Projection;
 use AppBundle\Entity\Ticket;
+use AppBundle\Entity\TicketRepository;
 use AppBundle\Form\BookProjectionForm;
 use AppBundle\Entity\Seat;
 
@@ -20,6 +21,9 @@ class UserReservationsController extends Controller {
   public function displayReservationsAction(Request $request) {
 
     $em = $this->getDoctrine()->getManager();
+
+    //get rid of any expired reservation
+    $em->getRepository('AppBundle:Ticket')->removeExpiredTickets($this->getUser());
 
     //get reserved tickets
     $reservedTickets = $em->createQueryBuilder()
