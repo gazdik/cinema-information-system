@@ -71,7 +71,6 @@ class TicketRepository extends \Doctrine\ORM\EntityRepository
 
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
-        $dateTime = new \DateTime();
 
         $expiredTickets = $qb
             ->select('t')
@@ -79,19 +78,13 @@ class TicketRepository extends \Doctrine\ORM\EntityRepository
             ->where('t.user = ?1')
             ->andWhere('t.payment_date IS NULL')
             ->join('t.projection', 'p')
-            ->andWhere('p.date <= ?2')
+            ->andWhere('p.date < CURRENT_DATE()')
+            ->orWhere('p.date = CURRENT_DATE() AND p.end < CURRENT_TIME()' )
             ->setParameter(1, $user)
-            ->setParameter(2, $dateTime)
             ->getQuery()
             ->getResult();
 
         foreach($expiredTickets as $expiredTicket) {
-
-            //in case of the same date - compare time
-            if($expiredTicket->getProjection()->getDate()->format('Y-m-d') == $dateTime->format('Y-m-d')) {
-                if ($expiredTicket->getProjection()->getEnd()->format('H:i:s') < $dateTime->format('H:i:s'))
-                    $em->remove($expiredTicket);
-            } else
                 $em->remove($expiredTicket);
         }
 

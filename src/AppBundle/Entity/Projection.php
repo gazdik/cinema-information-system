@@ -74,7 +74,7 @@ class Projection
 
     public function s_end()
     {
-      return $this->start->format('G:i');
+      return $this->end->format('G:i');
     }
     public function s_date()
     {

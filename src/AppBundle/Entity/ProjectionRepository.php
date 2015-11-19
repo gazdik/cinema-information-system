@@ -17,6 +17,8 @@ class ProjectionRepository extends \Doctrine\ORM\EntityRepository
         $qb->select('p')
           ->from('AppBundle:Projection', 'p')
           ->where('p.date >= ?1')
+            ->andWhere('p.date > CURRENT_DATE()')
+            ->orWhere('p.date = CURRENT_DATE() AND p.end > CURRENT_TIME()' )
           ->setParameter(1, $date_from->format('Y-m-d'));
 
         if ($date_to) {
@@ -54,7 +56,7 @@ class ProjectionRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->getEntityManager()->createQuery(
       'SELECT p
       FROM AppBundle:Projection p
-      WHERE p.date = :date
+      WHERE p.date = :date AND p.end > CURRENT_TIME()
       ORDER BY p.start ASC'
     )->setParameter('date', $date->format('Y-m-d'));
 
