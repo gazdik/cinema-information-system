@@ -10,17 +10,23 @@ namespace AppBundle\Entity;
  */
 class ProjectionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findFromToOrderer($date_from, $date_to)
+    public function findFromToOrdered($date_from, $date_to)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $qb->select('p')
           ->from('AppBundle:Projection', 'p')
-          ->where('p.date >= ?1 AND p.date <= ?2')
-          ->orderBy('p.date', 'ASC')
-          ->addOrderBy('p.start', 'ASC')
-          ->setParameter(1, $date_from->format('Y-m-d'))
-          ->setParameter(2, $date_to->format('Y-m-d'));
+          ->where('p.date >= ?1')
+          ->setParameter(1, $date_from->format('Y-m-d'));
+
+        if ($date_to) {
+        $qb->andWhere('p.date <= ?2')
+            ->setParameter(2, $date_to->format('Y-m-d'));
+
+        }
+
+        $qb->orderBy('p.date', 'ASC')
+          ->addOrderBy('p.start', 'ASC');
 
         $query = $qb->getQuery();
 

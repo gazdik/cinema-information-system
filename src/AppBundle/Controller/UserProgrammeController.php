@@ -40,7 +40,7 @@ class UserProgrammeController extends Controller
             $date_to = new \DateTime();
             $date_to->modify('+1 days');
             $projections = $em->getRepository('AppBundle:Projection')
-                ->findFromToOrderer(new \DateTime(), $date_to);
+                ->findFromToOrdered(new \DateTime(), $date_to);
         }
 
         return $this->render('User/programme.html.twig', array(

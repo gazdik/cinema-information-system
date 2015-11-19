@@ -61,7 +61,8 @@ class AdminCashierController extends Controller
               );
       } else {
           // Retrieve all projections from db
-          $projections = $em->getRepository('AppBundle:Projection')->findAllOrdered();
+          $projections = $em->getRepository('AppBundle:Projection')
+            ->findFromToOrdered(new \DateTime(), null);
       }
 
       return $this->render('Admin/Ticket/cashier-tickets.html.twig', array(
@@ -88,11 +89,11 @@ class AdminCashierController extends Controller
         ->getRepository('AppBundle:Projection')
         ->find($projectionId);
 
-        // The projection isn't in db
-        if (!$projection) {
-            throw $this->createNotFoundException('Projection with id '
-            .$projectionId.' does not exist.');
-        }
+      // The projection isn't in db
+      if (!$projection) {
+          throw $this->createNotFoundException('Projection with id '
+          .$projectionId.' does not exist.');
+      }
 
 
       // get free seats
