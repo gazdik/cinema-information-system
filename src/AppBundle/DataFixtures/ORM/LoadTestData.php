@@ -786,6 +786,14 @@ private $priceCategories = array(
   "employee" => 1
 );
 
+    private $users = array(
+        array('name' => 'John Maria Doe', 'email' => 'admin@mail.com', 'pass' => 'pass', 'role' => 'ROLE_ADMIN', 'active' => true),
+        array('name' => 'John Hernandez Doe', 'email' => 'manager@mail.com', 'pass' => 'pass', 'role' => 'ROLE_MANAGER', 'active' => true),
+        array('name' => 'John Vieira Doe', 'email' => 'cashier@mail.com', 'pass' => 'pass', 'role' => 'ROLE_CASHIER', 'active' => true),
+        array('name' => 'John Sanchez Doe', 'email' => 'user@mail.com', 'pass' => 'pass', 'role' => 'ROLE_USER', 'active' => true),
+        array('name' => 'John Velazques Doe', 'email' => 'blockedUser@mail.com', 'pass' => 'pass', 'role' => 'ROLE_USER', 'active' => false),
+    );
+
     /**
      * @var ContainerInterface
      */
@@ -805,6 +813,22 @@ private $priceCategories = array(
     public function load(ObjectManager $manager)
     {
       $em = $this->container->get('doctrine')->getEntityManager('default');
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        /**
+         * Add users
+         */
+        foreach ($this->users as $user) {
+            $newUser = $userManager->createUser();
+            $newUser->setUsername($user['email']);
+            $newUser->setEmail($user['email']);
+            $newUser->setName($user['name']);
+            $newUser->setPlainPassword($user['pass']);
+            $newUser->setEnabled($user['active']);
+            $newUser->setRoles(array($user['role']));
+
+            $userManager->updateUser($newUser, true);
+        }
 
       /**
       *Add price categories into database
@@ -817,6 +841,8 @@ private $priceCategories = array(
         $manager->persist($priceCategory);
       }
       $manager->flush();
+
+
 
       /**
        * Add clients into database
