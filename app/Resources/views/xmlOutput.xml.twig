@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="{{ asset('assets/css/xmlOutputStyle.css') }}"?>
+<programme>
+    {% for projection in projections %}
+        <screening>
+            <movie>{{ projection.getMovieName }}</movie>
+            <date>{{ projection.s_date }}</date>
+            <start>{{ projection.s_start }}</start>
+            <genre>{{ projection.getGenre }}</genre>
+            <cinema>Kino {{ projection.getCinemaName }}</cinema>
+        </screening>
+    {% endfor %}
+</programme>

@@ -3,7 +3,9 @@
 {% form_theme form ':Form:search.html.twig' %}
 
 
-{% block title %}Programme{% endblock %}
+{% block title %}
+  Programme
+{% endblock %}
 
 {# Add stylesheet for date picker #}
 {% block stylesheets %}
@@ -18,7 +20,8 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="page-header">Programme</h1>
+<h1 class="page-header">Programme <a href="/xml" class="btn btn-default">XML</a></h1>
+
 
 {# Search bar #}
 <div class="bg-searchform">

@@ -1,0 +1,25 @@
+programme {
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+}
+screening {
+    display: block;
+    margin-bottom: 30pt;
+    margin-left: 0;
+}
+movie {
+    display: block;
+    color: #ff0000;
+    font-size: 20pt;
+}
+date {
+    display: block;
+    color: #0000ff;
+    font-size: 20pt;
+}
+start, genre, cinema {
+    display: block;
+    color: #000000;
+   /* margin-left: 20pt;*/
+}
