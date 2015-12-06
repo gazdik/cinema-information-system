@@ -41,8 +41,8 @@
 </tbody></table>
 
 <h2>Implementácia</h2>
-<p>Pôvodný use-case diagram bol značne rozšírený.</p> <!-- Pokračovanie... -->
-<p>Stručná dokumentace k implementaci, která popisuje, které PHP skripty implementují jednotlivé případy použití uvedené v use-case diagramu z IDS. V případě, že bylo nutno při implementaci učinit změny v návrhu, musí být v dokumentaci zdůvodněny.</p>
+<p>Pôvodný use-case diagram bol značne rozšírený. Pri implementácií sme využili open-source framework Symfony, ktorý využíva architektúru MVC, takže skripty, ktoré spracovávajú reakcie od užívateľa sú v balíku Controller.  Skripty, ktoré implementujú zákaznícku časť systému sú nazvané prefixom User. Skripty s prefixom Admin implementujú role ostatných užívateľov. </p>
+<p>Do ER diagramu boli pridané dve nové entity. Entita MovieGenre reprezentuje žáner filmu, ktorý bol pôvodne modelovaný ako atribút, umožňuje to jednoduchšiu správu žánrov k jednotlivým filmom. Z rovnakých dôvodov bola pridaná entita PriceCategory, ktorá definuje cenovú kategóriu lístkov.</p>
 
 <h2>Inštalácia</h2>
 <ul>
