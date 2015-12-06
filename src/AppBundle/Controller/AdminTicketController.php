@@ -109,7 +109,6 @@ class AdminTicketController extends Controller
         ));
     }
 
-
     /**
      * @Route("/dashboard/profit", name="profit")
      */

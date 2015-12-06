@@ -42,6 +42,22 @@
 
 <h2>Implementácia</h2>
 <p>Pôvodný use-case diagram bol značne rozšírený. Pri implementácií sme využili open-source framework Symfony, ktorý využíva architektúru MVC, takže skripty, ktoré spracovávajú reakcie od užívateľa sú v balíku Controller.  Skripty, ktoré implementujú zákaznícku časť systému sú nazvané prefixom User. Skripty s prefixom Admin implementujú role ostatných užívateľov. </p>
+<ul>
+	<li><b>AdminCashierController.php:</b> predaj a rezevrácia lístkov pokladníkom</li>
+	<li><b>AdminCinemaController:</b> správa kín</li>
+	<li><b>AdminHallController:</b> správa premietacích sál</li>
+	<li><b>AdminMovieController:</b> správa filmov</li>
+	<li><b>AdminProjectionController:</b> správa projekcií</li>
+	<li><b>AdminTicketController:</b> tržby, úprava cenových kategórií lístkov</li>
+	<li><b>AdminUserController:</b> správa užívateľov</li>
+	<li><b>UserBookingController:</b> rezerácia lístkov zákazníkmi</li>
+	<li><b>UserCinemasController:</b> zobrazenie kín</li>
+	<li><b>UserDefaultController:</b> homepage</li>
+	<li><b>UserEditProfileController:</b> úprava užívateľskeho profilu</li>
+	<li><b>UserProgrammeController:</b> vyhľadánie projekcií</li>
+	<li><b>UserReservationsController:</b> rezervácie lístkov</li>
+	<li><b>XMLOutputController:</b> XML výstup aktuálneho programu</li>
+</ul>
 <p>Do ER diagramu boli pridané dve nové entity. Entita MovieGenre reprezentuje žáner filmu, ktorý bol pôvodne modelovaný ako atribút, umožňuje to jednoduchšiu správu žánrov k jednotlivým filmom. Z rovnakých dôvodov bola pridaná entita PriceCategory, ktorá definuje cenovú kategóriu lístkov.</p>
 
 <h2>Inštalácia</h2>
