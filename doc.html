@@ -7,6 +7,7 @@
     	table { border-collapse: collapse; }
     	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
     	dt { font-weight: bold; margin-top: 0.5em; }
+      .courier { font-family: "Courier New", Courier, monospace; }
     </style>
 <style type="text/css"></style></head>
 <body>
@@ -20,11 +21,11 @@
 	<dt>Autori</dt>
 	<dd>Peter Gazdík<!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xgazdi03@stud.fit.vutbr.cz">xgazdi03@stud.fit.vutbr.cz</a> -
-		<i>TODO</i>správa uživatelů a uživatelské rozhraní
+		administrátorská časť aplikácie
 	</dd>
 	<dd>Marek Bielik <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xbieli05@stud.fit.vutbr.cz">xbieli05@stud.fit.vutbr.cz</a> -
-		<i>TODO</i>databázový subsystém
+		klientská časť aplikácie
 	</dd>
 	<dt>URL aplikácie</dt>
 	<dd><a href="http://multikina.6f.sk/">http://multikina.6f.sk/</a></dd>
@@ -33,11 +34,11 @@
 <h2>Užívatelia systému pre testovanie</h2>
 <table>
 <tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
-<tr><td>admin@email.com</td><td>pass</td><td>Administrátor</td></tr>
-<tr><td>manager@email.com</td><td>pass</td><td>Manažér kina</td></tr>
-<tr><td>cashier@email.com</td><td>pass</td><td>Pokladník v kine</td></tr>
-<tr><td>user@email.com</td><td>pass</td><td>Zákazník</td></tr>
-<tr><td>blockedUser@email.com</td><td>pass</td><td> Blokovaný Zákazník</td></tr>
+<tr><td>admin@mail.com</td><td>pass</td><td>Administrátor</td></tr>
+<tr><td>manager@mail.com</td><td>pass</td><td>Manažér kina</td></tr>
+<tr><td>cashier@mail.com</td><td>pass</td><td>Pokladník v kine</td></tr>
+<tr><td>user@mail.com</td><td>pass</td><td>Zákazník</td></tr>
+<tr><td>blockedUser@mail.com</td><td>pass</td><td> Blokovaný zákazník</td></tr>
 </tbody></table>
 
 <h2>Implementácia</h2>
@@ -61,10 +62,45 @@
 <p>Do ER diagramu boli pridané dve nové entity. Entita MovieGenre reprezentuje žáner filmu, ktorý bol pôvodne modelovaný ako atribút, umožňuje to jednoduchšiu správu žánrov k jednotlivým filmom. Z rovnakých dôvodov bola pridaná entita PriceCategory, ktorá definuje cenovú kategóriu lístkov.</p>
 
 <h2>Inštalácia</h2>
+<h3>Inštalácia na server</h3>
 <ul>
-<li>Stručně popište postup instalace na server</li>
-<li>Softwarové požadavky (verze PHP apod.)</li>
-<li>Jak rozbalit, konfigurovat, inicializovat databází, ...</li>
+	<li>Presunieme sa do zložky <span class="courier">src/</span></li>
+	<li>
+		Nakonfigurujeme parametre databáze v súbore
+		<span class="courier">app/config/parameters.yml</span>
+	</li>
+	<li>Nainštalujeme závislosti:
+		<ul>
+			<li class="courier">composer install --no-dev --optimize-autoloader</li>
+		</ul>
+	</li>
+	<li>Vymažeme cache a odstránime závislosti Asseticu
+		<ul>
+			<li>php bin/console cache:clear --env=prod --no-debug</li>
+			<li>php bin/console assetic:dump --env=prod --no-debug</li>
+		</ul>
+	</li>
+	<li>
+		Aby bola stránka dostupná rovno po zadaní domény, zmeníme vo všetkých cestách v php súboroch v zložke <span class="courier">web/</span>
+		podreťazec <span class="courier">/../</span> na <span class="courier">/</span> a následne môžeme celý obsah web skopírovať o úroveň vyššie príkazom
+		<ul>
+			<li class="courier">cp -L -rf web/. ./</li>
+		</ul>
+	</li>
+	<li>Súbory nahráme pomocou ftp na server.</li>
+	<li>Importujeme databázu napr. pomocou phpmyadmin zo súboru <span class="courier">database.sql</span></li>
+</ul>
+
+<h3>Softwarové požiadavky</h3>
+<ul>
+	<li>PHP vo verzii 5.3.9 a vyššej</li>
+	<li>Povolený JSON</li>
+	<li>Povolený ctype</li>
+</ul>
+
+<h3>Databáza</h3>
+<ul>
+	<li>Inicializačný SQL skript databáze sa nachádza v súbore <span class="courier">database.sql</span></li>
 </ul>
 
 <h2>Známe problémy</h2>
