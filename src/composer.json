@@ -21,7 +21,7 @@
         "leafo/scssphp": "^0.3.2",
         "patchwork/jsqueeze": "~1.0",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
-				"stephanecollot/datetimepicker-bundle": "dev-master",
+				"stephanecollot/datetimepicker-bundle": "1.0.1",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "pugx/autocompleter-bundle": "^1.2"
     },
