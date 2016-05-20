@@ -14,7 +14,7 @@ http://multikina.6f.sk/
 
 ## Užívatelia systému pre testovanie
 
-| Login                | Heslo | Roľa               |
+| Login                | Heslo | Rola               |
 |----------------------|-------|--------------------|
 | admin@mail.com       | pass  | Administrátor      |
 | manager@mail.com     | pass  | Manažér kina       |
